@@ -27,10 +27,12 @@
 
         body {
             font-family: 'Poppins', sans-serif;
-            background-color: var(--background-color);
             color: var(--text-color);
             line-height: 1.6;
             scroll-behavior: smooth;
+            background-color: var(--background-color);
+            background-image: radial-gradient(circle, rgba(0, 123, 255, 0.2) 1px, transparent 1px);
+            background-size: 40px 40px;
         }
 
         /* Animação de entrada */
@@ -52,7 +54,7 @@
             margin: 0 auto;
             padding: 0 20px;
         }
-
+        
         /* Header */
         header {
             background-color: var(--background-color);
@@ -65,13 +67,12 @@
 
         header .container {
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
             align-items: center;
         }
 
         header h1 {
-            font-size: 1.8rem;
-            font-weight: 700;
+            display: none;
         }
 
         nav ul {
@@ -79,19 +80,42 @@
             display: flex;
         }
 
+        /* AJUSTE: ANIMAÇÃO NO MENU */
+        @keyframes navLinkFade {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
         nav li {
             margin-left: 2rem;
+            animation: navLinkFade 0.5s ease forwards;
+            opacity: 0;
         }
+        
+        nav li:nth-child(1) { animation-delay: 0.1s; }
+        nav li:nth-child(2) { animation-delay: 0.2s; }
+        nav li:nth-child(3) { animation-delay: 0.3s; }
+        nav li:nth-child(4) { animation-delay: 0.4s; }
+        nav li:nth-child(5) { animation-delay: 0.5s; }
+        nav li:nth-child(6) { animation-delay: 0.6s; }
+        nav li:nth-child(7) { animation-delay: 0.7s; }
 
         nav a {
             text-decoration: none;
             color: var(--text-color);
             font-weight: 600;
-            transition: color var(--transition-speed);
+            transition: color var(--transition-speed), transform var(--transition-speed);
         }
 
         nav a:hover {
             color: var(--primary-color);
+            transform: scale(1.1);
         }
         
         /* Seções */
@@ -105,14 +129,14 @@
             margin-bottom: 3rem;
         }
 
-        /* Seção "Sobre Mim" */
+        /* MANTIDO: FOTO "SOBRE MIM" ALINHADA AO TOPO */
         #sobre .container {
             padding-top: 8rem;
         }
 
         #sobre .sobre-content {
             display: flex;
-            align-items: flex-start;
+            align-items: flex-start; 
             gap: 4rem;
             flex-wrap: wrap;
         }
@@ -141,10 +165,9 @@
             border: 3px solid var(--primary-color);
             box-shadow: var(--box-shadow);
             flex-shrink: 0;
-            align-self: center;
         }
         
-        /* Seção "Trajetória Profissional" (Gráfico) */
+        /* AJUSTE: TRAJETÓRIA PROFISSIONAL VOLTOU AO ORIGINAL */
         #trajetoria {
             text-align: center;
         }
@@ -212,6 +235,7 @@
             color: var(--primary-color);
         }
         
+        /* Regras de posicionamento da trajetória restauradas */
         .step.start { bottom: 0; }
         .step.step-1 { bottom: 20px; }
         .step.step-2 { bottom: 50px; }
@@ -258,6 +282,7 @@
             border: 3px solid var(--primary-color);
             box-shadow: var(--box-shadow);
             flex-shrink: 0;
+            align-self: center;
         }
 
         /* Projetos */
@@ -274,6 +299,7 @@
             box-shadow: var(--box-shadow);
             transition: transform var(--transition-speed), box-shadow var(--transition-speed);
             text-align: center;
+            cursor: pointer;
         }
         
         .projeto-card img {
@@ -329,6 +355,7 @@
             box-shadow: var(--box-shadow);
             text-align: center;
             width: 250px;
+            cursor: pointer;
             transition: transform var(--transition-speed);
         }
 
@@ -344,7 +371,7 @@
             display: none;
         }
 
-        /* Habilidades */
+        /* MANTIDO: ANIMAÇÃO DE HOVER NAS HABILIDADES */
         #habilidades ul {
             list-style: none;
             display: flex;
@@ -359,11 +386,12 @@
             border-radius: var(--border-radius);
             font-weight: 600;
             box-shadow: var(--box-shadow);
-            transition: transform var(--transition-speed);
+            cursor: pointer;
+            transition: transform 0.3s ease;
         }
 
         #habilidades li:hover {
-            transform: scale(1.05);
+            transform: translateY(-5px);
         }
 
         #habilidades strong {
@@ -508,7 +536,6 @@
     <header>
         <div class="container">
             <nav>
-                <h1>Erickson Queiroz</h1>
                 <ul>
                     <li><a href="#sobre">Sobre Mim</a></li>
                     <li><a href="#trajetoria">Trajetória</a></li>
@@ -545,6 +572,7 @@
             <div class="container fade-in">
                 <h2>Minha Trajetória Profissional</h2>
                 <div class="career-path">
+                    <!-- Classes da trajetória restauradas para o efeito original -->
                     <div class="step start">
                         <div class="title">Auxiliar de Suporte Técnico<br><span class="company">Brisanet</span></div>
                     </div>
@@ -578,21 +606,37 @@
                 <h2>Meus Projetos</h2>
                 <div class="projetos-grid">
                     <div class="projeto-card fade-in" style="animation-delay: 0.2s;">
+                        <img src="brisanet.png" alt="Imagem do projeto Brisanet">
+                        <h3>Brisanet: Análise de Redes e Otimização</h3>
+                        <p>Fui responsável por implementar um sistema de chamados, dashboards e um chatbot. Coletando e analisando dados para otimizar processos internos, proporcionando uma visão consolidada da rede através de relatórios diários e semanais. Isso permitiu uma gestão mais eficiente e a identificação proativa de pontos críticos.</p>
+                        <a href="https://www.linkedin.com/posts/erickson-queiroz-90428121b_inteligenciaartificial-brisanet-tecnologia-activity-7361077918615101441-0V8Y?utm_source=share&utm_medium=member_desktop&rcm=ACoAADdkG9QBjIa5gwfb9l10W2YH9zpeb99XrQ4" target="_blank" class="project-button">Ver Projeto</a>
+                    </div>
+                    <div class="projeto-card fade-in" style="animation-delay: 0.4s;">
+                        <img src="tivit.jpg" alt="Imagem do projeto TIVIT">
+                        <h3>TIVIT: Mentoria e Desenvolvimento</h3>
+                        <p>Participei como mentor em um projeto estratégico, orientando jovens talentos em sua entrada no mercado de trabalho. Compartilhei conhecimentos e experiências para prepará-los para os desafios do mercado, contribuindo para o desenvolvimento profissional e a construção de uma base sólida para suas carreiras.</p>
+                        <a href="https://www.linkedin.com/posts/graziela-nobre_jornadadaempregabilidade-institutotivit-tivit-ugcPost-7185638466322391040-pLP2?utm_source=share&utm_medium=member_desktop&rcm=ACoAADdkG9QBjIa5gwfb9l10W2YH9zpeb99XrQ4" target="_blank" class="project-button">Ver Projeto</a>
+                    </div>
+                    <div class="projeto-card fade-in" style="animation-delay: 0.6s;">
+                        <h3>Telecardio: Processos e Automação</h3>
+                        <p>Ao assumir um cargo recém-criado, fui responsável por desenvolver e padronizar processos, automatizar fluxos operacionais e criar manuais de resolução de erros. Realizei o primeiro contato com clientes para mapear suas necessidades e planejar integrações, garantindo uma transição suave e eficiente.</p>
+                    </div>
+                    <div class="projeto-card fade-in" style="animation-delay: 0.8s;">
                         <img src="dash.png" alt="Dashboards de Rede">
                         <h3>Dashboards de Rede</h3>
                         <p>Desenvolvimento de dashboards para monitoramento completo da rede, exibindo indicadores de performance em tempo real e insights estratégicos para otimizar o desempenho.</p>
                     </div>
-                    <div class="projeto-card fade-in" style="animation-delay: 0.4s;">
+                    <div class="projeto-card fade-in" style="animation-delay: 1.0s;">
                         <img src="chamados.png" alt="Sistema de Chamados com Bot">
                         <h3>Sistema de Chamados com Bot</h3>
                         <p>Criação de um sistema de chamados integrado com um bot de consulta, dashboards e outras ferramentas para agilizar o atendimento e a gestão de incidentes.</p>
                     </div>
-                    <div class="projeto-card fade-in" style="animation-delay: 0.6s;">
+                    <div class="projeto-card fade-in" style="animation-delay: 1.2s;">
                         <img src="bot.png" alt="Bot de Consulta de Planilhas Online">
                         <h3>Bot de Consulta de Planilhas Online</h3>
                         <p>Implementação de um bot para consulta de mais de 12 planilhas online, facilitando o acesso a dados e otimizando processos de análise para a equipe.</p>
                     </div>
-                    <div class="projeto-card fade-in" style="animation-delay: 0.8s;">
+                    <div class="projeto-card fade-in" style="animation-delay: 1.4s;">
                         <img src="email.png" alt="E-mail com informações de indicadores da rede">
                         <h3>E-mail com Indicadores da Rede</h3>
                         <p>Configuração de e-mails automáticos com informações de indicadores da rede, fornecendo uma visão diária e consolidada do desempenho da infraestrutura.</p>
@@ -605,11 +649,11 @@
             <div class="container">
                 <h2>Minhas Habilidades</h2>
                 <ul>
-                    <li class="fade-in" style="animation-delay: 0.2s;"><strong>Cybersecurity & Redes:</strong> Segurança de Redes e Cybersecurity</li>
-                    <li class="fade-in" style="animation-delay: 0.3s;"><strong>Redes:</strong> Monitoramento e Gestão (4G/5G, Barracuda, Fortinet)</li>
-                    <li class="fade-in" style="animation-delay: 0.4s;"><strong>Análise:</strong> Dados (Excel, SQL, Power BI, Looker Studio) e Dashboards</li>
-                    <li class="fade-in" style="animation-delay: 0.5s;"><strong>Infraestrutura:</strong> Troubleshooting de Redes, Automação, AD, Linux</li>
-                    <li class="fade-in" style="animation-delay: 0.6s;"><strong>Pessoais:</strong> Comunicativo, Dinâmico, Trabalho em Equipe</li>
+                    <li><strong>Cybersecurity & Redes:</strong> Segurança de Redes e Cybersecurity</li>
+                    <li><strong>Redes:</strong> Monitoramento e Gestão (4G/5G, Barracuda, Fortinet)</li>
+                    <li><strong>Análise:</strong> Dados (Excel, SQL, Power BI, Looker Studio) e Dashboards</li>
+                    <li><strong>Infraestrutura:</strong> Troubleshooting de Redes, Automação, AD, Linux</li>
+                    <li><strong>Pessoais:</strong> Comunicativo, Dinâmico, Trabalho em Equipe</li>
                 </ul>
             </div>
         </section>
