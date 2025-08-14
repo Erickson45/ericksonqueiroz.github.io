@@ -80,7 +80,6 @@
             display: flex;
         }
 
-        /* AJUSTE: ANIMAÇÃO NO MENU */
         @keyframes navLinkFade {
             from {
                 opacity: 0;
@@ -129,7 +128,6 @@
             margin-bottom: 3rem;
         }
 
-        /* MANTIDO: FOTO "SOBRE MIM" ALINHADA AO TOPO */
         #sobre .container {
             padding-top: 8rem;
         }
@@ -167,7 +165,6 @@
             flex-shrink: 0;
         }
         
-        /* AJUSTE: TRAJETÓRIA PROFISSIONAL VOLTOU AO ORIGINAL */
         #trajetoria {
             text-align: center;
         }
@@ -235,7 +232,6 @@
             color: var(--primary-color);
         }
         
-        /* Regras de posicionamento da trajetória restauradas */
         .step.start { bottom: 0; }
         .step.step-1 { bottom: 20px; }
         .step.step-2 { bottom: 50px; }
@@ -245,7 +241,6 @@
         .step.step-6 { bottom: 90px; }
         .step.step-7 { bottom: 120px; }
 
-        /* Seção "Me conheça melhor" */
         #me-conheca-melhor .container {
             display: flex;
             align-items: center;
@@ -339,39 +334,75 @@
             background-color: var(--secondary-color);
         }
         
-        /* Certificações */
-        #certificacoes ul {
+        /* Certificações - ESTILOS ATUALIZADOS */
+        .certificacoes-destaque {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .cert-card {
+            background-color: var(--card-background);
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            text-align: center;
+            width: 320px;
+            transition: transform var(--transition-speed);
+            cursor: pointer;
+        }
+
+        .cert-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .cert-card img {
+            width: 100%;
+            height: auto;
+            border-radius: var(--border-radius);
+            margin-bottom: 1rem;
+            border: 2px solid var(--primary-color);
+        }
+
+        .cert-card h3 {
+            font-size: 1.1rem;
+            color: var(--text-color);
+            min-height: 50px;
+        }
+        
+        #certificacoes .outras-certificacoes {
             list-style: none;
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 2rem;
+            gap: 1.5rem;
+            padding: 0;
+            margin-top: 2rem;
         }
 
-        #certificacoes li {
+        #certificacoes .outras-certificacoes li {
             background-color: var(--card-background);
-            padding: 1.5rem;
+            padding: 1rem 1.5rem;
             border-radius: var(--border-radius);
             box-shadow: var(--box-shadow);
             text-align: center;
-            width: 250px;
-            cursor: pointer;
+            flex-grow: 1;
+            min-width: 200px;
             transition: transform var(--transition-speed);
         }
-
-        #certificacoes li:hover {
+        
+        #certificacoes .outras-certificacoes li:hover {
             transform: scale(1.05);
         }
 
-        #certificacoes li h3 {
-            font-size: 1rem;
+        #certificacoes .outras-certificacoes h3 {
+            font-size: 0.9rem;
+            font-weight: 400;
         }
 
-        #certificacoes li img {
-            display: none;
-        }
-
-        /* MANTIDO: ANIMAÇÃO DE HOVER NAS HABILIDADES */
+        /* Habilidades */
         #habilidades ul {
             list-style: none;
             display: flex;
@@ -525,8 +556,11 @@
             .modal-content {
                 width: 90%;
             }
-            #certificacoes li {
+            #certificacoes .outras-certificacoes li {
                 width: 100%;
+            }
+            .cert-card {
+                width: 90%;
             }
         }
     </style>
@@ -572,7 +606,6 @@
             <div class="container fade-in">
                 <h2>Minha Trajetória Profissional</h2>
                 <div class="career-path">
-                    <!-- Classes da trajetória restauradas para o efeito original -->
                     <div class="step start">
                         <div class="title">Auxiliar de Suporte Técnico<br><span class="company">Brisanet</span></div>
                     </div>
@@ -661,8 +694,19 @@
         <section id="certificacoes" class="fade-in">
             <div class="container">
                 <h2>Cursos & Certificações</h2>
-                <ul>
-                    <li><h3>Google Cybersecurity Professional Certificate V2</h3></li>
+
+                <div class="certificacoes-destaque">
+                    <div class="cert-card">
+                        <img src="google.jpg" alt="Certificado Google Cybersecurity">
+                        <h3>Google Cybersecurity Professional Certificate V2</h3>
+                    </div>
+                    <div class="cert-card">
+                        <img src="cisco.png" alt="Certificado Cisco Cybersecurity Analyst">
+                        <h3>Junior Cybersecurity Analyst Career Path</h3>
+                    </div>
+                </div>
+
+                <ul class="outras-certificacoes">
                     <li><h3>Segurança em Tecnologia da Informação</h3></li>
                     <li><h3>Inteligência Artificial</h3></li>
                     <li><h3>Cursos de Cloud AWS/AZURE</h3></li>
