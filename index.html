@@ -3,800 +3,783 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Erickson Queiroz | Infraestrutura, Dev & Security</title>
+    <meta name="description" content="Portfólio de Erickson Queiroz - Infraestrutura, DevOps e Automação.">
+    <title>Erickson Queiroz | Infraestrutura & Future DevOps</title>
+    
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
     
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
-
         :root {
-            --primary: #007BFF;
-            --accent: #00d4ff; /* Azul ciano para gradientes */
-            --bg-dark: #0f1014;
-            --card-bg: rgba(255, 255, 255, 0.03);
-            --card-border: rgba(255, 255, 255, 0.08);
-            --text-main: #f0f2f5;
-            --text-muted: #a0a0a0;
-            --glass-blur: blur(12px);
-            --radius: 16px;
-            --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            /* --- PALETA "BLUE PLASMA" --- */
+            --bg-deep: #020408;
+            --bg-surface: #0a0f18;
+            
+            --neon-primary: #00f3ff; /* Ciano Elétrico */
+            --neon-secondary: #0062ff; /* Azul Laser */
+            --neon-accent: #ff003c; /* Vermelho (Detalhes sutis de calor) */
+            
+            --text-main: #ffffff;
+            --text-muted: #94a3b8;
+            --text-dark: #0f172a;
+            
+            --glass-bg: rgba(10, 15, 25, 0.65);
+            --glass-border: rgba(0, 243, 255, 0.15);
+            --glass-shine: rgba(255, 255, 255, 0.05);
+            
+            --radius-sm: 8px;
+            --radius-md: 16px;
+            --radius-lg: 30px;
+            
+            --transition-smooth: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        /* --- RESET & BASE --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
         body {
-            font-family: 'Poppins', sans-serif;
-            background-color: var(--bg-dark);
+            background-color: var(--bg-deep);
             color: var(--text-main);
+            font-family: 'Space Grotesk', sans-serif;
             line-height: 1.7;
             overflow-x: hidden;
-            /* Fundo abstrato premium */
-            background-image: 
-                radial-gradient(circle at 10% 20%, rgba(0, 123, 255, 0.15) 0%, transparent 40%),
-                radial-gradient(circle at 90% 80%, rgba(0, 212, 255, 0.1) 0%, transparent 40%);
+            -webkit-font-smoothing: antialiased;
         }
 
-        html {
-            scroll-behavior: smooth;
+        html { scroll-behavior: smooth; }
+
+        /* --- CANVAS BACKGROUND --- */
+        #neural-canvas {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1;
+            background: radial-gradient(circle at 50% 0%, #081020 0%, #020408 80%);
         }
 
-        /* --- Scrollbar Customizada --- */
-        ::-webkit-scrollbar {
-            width: 8px;
+        /* --- TYPOGRAPHY & UTILS --- */
+        .container { max-width: 1240px; margin: 0 auto; padding: 0 24px; position: relative; z-index: 2; }
+        
+        h1, h2, h3, h4 { font-family: 'Outfit', sans-serif; letter-spacing: -0.02em; color: #fff; }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, #fff 30%, var(--neon-primary) 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
         }
-        ::-webkit-scrollbar-track {
-            background: var(--bg-dark);
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #333;
-            border-radius: 4px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: var(--primary);
-        }
+        
+        .highlight { color: var(--neon-primary); font-weight: 700; }
 
-        /* --- Tipografia e Utilitários --- */
-        h1, h2, h3 {
-            color: #fff;
-            font-weight: 700;
+        .section-header { text-align: center; margin-bottom: 5rem; position: relative; }
+        .section-tag {
+            display: inline-block; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 3px;
+            color: var(--neon-primary); margin-bottom: 1rem; font-weight: 700;
+            padding: 6px 16px; border: 1px solid rgba(0, 243, 255, 0.2); border-radius: 50px;
+            background: rgba(0, 243, 255, 0.05);
         }
-
-        .highlight {
-            background: linear-gradient(90deg, var(--primary), var(--accent));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 24px;
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 12px 28px;
-            background: linear-gradient(135deg, var(--primary), var(--secondary-color, #0056b3));
-            color: #fff;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: 600;
-            box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3);
-            transition: var(--transition);
-        }
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(0, 123, 255, 0.5);
-        }
-
-        /* --- Header --- */
-        header {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            padding: 1rem 0;
-            z-index: 1000;
-            background: rgba(15, 16, 20, 0.8);
-            backdrop-filter: var(--glass-blur);
-            border-bottom: 1px solid var(--card-border);
-        }
-
-        nav ul {
-            display: flex;
-            justify-content: center;
-            list-style: none;
-            gap: 2rem;
-            flex-wrap: wrap;
-        }
-
-        nav a {
-            text-decoration: none;
-            color: var(--text-main);
-            font-weight: 500;
-            font-size: 0.95rem;
-            position: relative;
-            transition: var(--transition);
-        }
-
-        nav a::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: -5px;
-            left: 0;
-            background: var(--accent);
-            transition: var(--transition);
-        }
-
-        nav a:hover {
-            color: var(--accent);
-        }
-
-        nav a:hover::after {
-            width: 100%;
-        }
-
-        /* --- Seções Gerais --- */
-        section {
-            padding: 6rem 0;
-        }
-
         .section-title {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 4rem;
-            position: relative;
-            display: inline-block;
-            width: 100%;
-        }
-        
-        /* --- Hero / Sobre --- */
-        #sobre {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            padding-top: 8rem;
+            font-size: 3.5rem; font-weight: 800; text-transform: uppercase;
+            background: linear-gradient(to bottom, #fff, #64748b);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
         }
 
-        .hero-wrapper {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
+        /* --- BUTTONS --- */
+        .btn {
+            display: inline-flex; align-items: center; gap: 10px;
+            padding: 16px 32px; border-radius: 50px;
+            font-family: 'Outfit', sans-serif; font-weight: 600; text-transform: uppercase; letter-spacing: 1px;
+            text-decoration: none; color: #000;
+            background: var(--neon-primary);
+            position: relative; overflow: hidden;
+            transition: var(--transition-smooth);
+            box-shadow: 0 0 20px rgba(0, 243, 255, 0.4);
+            border: none; cursor: pointer;
         }
-
-        .hero-text h1 {
-            font-size: 3.5rem;
-            line-height: 1.1;
-            margin-bottom: 1rem;
-        }
-
-        .hero-text h2 {
-            font-size: 1.5rem;
-            font-weight: 400;
-            color: var(--accent);
-            margin-bottom: 1.5rem;
-        }
-
-        .hero-text p {
-            color: var(--text-muted);
-            margin-bottom: 1.5rem;
-            font-size: 1.05rem;
-        }
-
-        .hero-image-container {
-            position: relative;
-            display: flex;
-            justify-content: center;
-        }
-
-        .hero-image {
-            width: 400px;
-            height: 400px;
-            object-fit: cover;
-            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
-            border: 2px solid rgba(0, 212, 255, 0.3);
-            box-shadow: 0 0 40px rgba(0, 123, 255, 0.2);
-            animation: morph 8s ease-in-out infinite;
-        }
-
-        @keyframes morph {
-            0% { border-radius: 60% 40% 30% 70%/60% 30% 70% 40%; }
-            50% { border-radius: 30% 60% 70% 40%/50% 60% 30% 60%; }
-            100% { border-radius: 60% 40% 30% 70%/60% 30% 70% 40%; }
-        }
-
-        /* --- Timeline Vertical (Trajetória) --- */
-        .timeline {
-            position: relative;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .timeline::after {
-            content: '';
-            position: absolute;
-            width: 2px;
-            background: linear-gradient(to bottom, var(--primary), transparent);
-            top: 0;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-
-        .timeline-item {
-            padding: 10px 40px;
-            position: relative;
-            width: 50%;
-            box-sizing: border-box;
-            opacity: 0; /* Animação via JS/Scroll */
-            transform: translateY(20px);
-            transition: all 0.6s ease;
-        }
-
-        .timeline-item.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .timeline-item:nth-child(odd) {
-            left: 0;
-            text-align: right;
-        }
-
-        .timeline-item:nth-child(even) {
-            left: 50%;
-            text-align: left;
-        }
-
-        .timeline-item::after {
-            content: '';
-            position: absolute;
-            width: 16px;
-            height: 16px;
-            right: -8px;
-            top: 20px;
-            background-color: var(--bg-dark);
-            border: 3px solid var(--accent);
-            border-radius: 50%;
-            z-index: 1;
-            box-shadow: 0 0 10px var(--accent);
-        }
-
-        .timeline-item:nth-child(even)::after {
-            left: -8px;
-        }
-
-        .timeline-content {
-            padding: 20px 30px;
-            background: var(--card-bg);
-            border: 1px solid var(--card-border);
-            border-radius: var(--radius);
-            position: relative;
-            backdrop-filter: blur(5px);
-            transition: var(--transition);
-        }
-
-        .timeline-content:hover {
-            background: rgba(255, 255, 255, 0.05);
-            transform: translateY(-5px);
-            border-color: var(--primary);
-        }
-
-        .timeline-date {
-            font-size: 0.85rem;
-            color: var(--accent);
-            font-weight: 600;
-            margin-bottom: 5px;
-            display: block;
-        }
-
-        .timeline-title {
-            font-size: 1.2rem;
-            margin-bottom: 5px;
-        }
-
-        .timeline-company {
-            font-size: 0.9rem;
-            color: var(--text-muted);
-        }
-
-        /* --- Grid de Cards (Projetos e Certificações) --- */
-        .grid-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 2rem;
-        }
-
-        .card {
-            background: var(--card-bg);
-            border: 1px solid var(--card-border);
-            border-radius: var(--radius);
-            padding: 2rem;
-            transition: var(--transition);
-            display: flex;
-            flex-direction: column;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .card:hover {
-            transform: translateY(-10px);
-            border-color: var(--primary);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-        }
-        
-        /* Efeito de brilho no hover */
-        .card::before {
-            content: '';
-            position: absolute;
-            top: 0; left: -100%;
-            width: 100%; height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.05), transparent);
+        .btn::before {
+            content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.8), transparent);
             transition: 0.5s;
         }
-        .card:hover::before {
-            left: 100%;
+        .btn:hover::before { left: 100%; }
+        .btn:hover { transform: translateY(-4px); box-shadow: 0 0 40px rgba(0, 243, 255, 0.7); }
+
+        .btn-outline {
+            background: transparent; border: 1px solid var(--neon-primary); color: #fff;
+            box-shadow: none;
+        }
+        .btn-outline:hover {
+            background: rgba(0, 243, 255, 0.1); color: var(--neon-primary);
+            box-shadow: 0 0 30px rgba(0, 243, 255, 0.3);
         }
 
-        .card img {
-            width: 100%;
-            height: 180px;
-            object-fit: cover;
-            border-radius: 8px;
-            margin-bottom: 1.5rem;
+        /* --- HEADER NAV --- */
+        header {
+            position: fixed; top: 0; width: 100%; z-index: 1000;
+            padding: 20px 0; transition: 0.4s;
+        }
+        header.scrolled {
+            background: rgba(2, 4, 8, 0.85); backdrop-filter: blur(20px);
+            padding: 15px 0; border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        
+        nav ul { display: flex; justify-content: center; list-style: none; gap: 40px; }
+        nav a {
+            color: var(--text-muted); text-decoration: none; font-weight: 500; font-size: 0.95rem;
+            text-transform: uppercase; letter-spacing: 1px; position: relative; transition: 0.3s;
+        }
+        nav a::after {
+            content: ''; position: absolute; bottom: -5px; left: 0; width: 0; height: 2px;
+            background: var(--neon-primary); transition: 0.3s; box-shadow: 0 0 10px var(--neon-primary);
+        }
+        nav a:hover, nav a.active { color: #fff; }
+        nav a:hover::after { width: 100%; }
+
+        /* --- HERO SECTION --- */
+        #hero {
+            min-height: 100vh; display: flex; align-items: center;
+            padding-top: 80px; position: relative;
+        }
+        
+        .hero-grid {
+            display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 4rem; align-items: center;
+        }
+        
+        .hero-content h1 {
+            font-size: 4.8rem; line-height: 1.1; margin-bottom: 1.5rem; font-weight: 800;
+        }
+        .hero-content p {
+            font-size: 1.25rem; color: var(--text-muted); margin-bottom: 3rem;
+            max-width: 600px; border-left: 4px solid var(--neon-primary); padding-left: 24px;
         }
 
-        .card h3 {
-            margin-bottom: 1rem;
-            font-size: 1.3rem;
+        /* Foto com Animação "Plasma Ring" */
+        .profile-wrapper {
+            position: relative; display: flex; justify-content: center; align-items: center;
+            width: 450px; height: 450px;
+        }
+        
+        .plasma-ring {
+            position: absolute; width: 100%; height: 100%; border-radius: 50%;
+            background: conic-gradient(from 0deg, transparent 0%, var(--neon-primary) 50%, transparent 100%);
+            animation: spin 4s linear infinite;
+            mask-image: radial-gradient(transparent 62%, black 64%);
+            -webkit-mask-image: radial-gradient(transparent 62%, black 64%);
+        }
+        .plasma-ring:nth-child(2) {
+            animation-duration: 10s; animation-direction: reverse;
+            background: conic-gradient(from 180deg, transparent 0%, var(--neon-secondary) 50%, transparent 100%);
         }
 
-        .card p {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-            flex-grow: 1;
-            margin-bottom: 1.5rem;
+        .profile-img {
+            width: 88%; height: 88%; object-fit: cover; border-radius: 50%;
+            z-index: 2; position: relative;
+            border: 2px solid rgba(255,255,255,0.1);
+            box-shadow: 0 0 50px rgba(0, 243, 255, 0.2);
+        }
+        
+        @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+        /* --- SOBRE (STORYTELLING) --- */
+        .story-section { padding: 6rem 0; }
+        
+        .glass-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-lg);
+            padding: 4rem; position: relative; overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+            backdrop-filter: blur(12px);
+        }
+        
+        /* Efeito de brilho "passando" no card */
+        .glass-card::before {
+            content: ''; position: absolute; top: 0; left: -150%; width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.05), transparent);
+            transform: skewX(-25deg); transition: 0.5s; animation: shine 8s infinite;
+        }
+        @keyframes shine { 0% { left: -150%; } 20% { left: 150%; } 100% { left: 150%; } }
+
+        .story-grid { display: grid; grid-template-columns: 80px 1fr; gap: 2rem; }
+        .story-icon { font-size: 4rem; color: var(--neon-primary); }
+        .story-text h3 { font-size: 2rem; margin-bottom: 1.5rem; color: #fff; }
+        .story-text p { margin-bottom: 1.2rem; font-size: 1.1rem; color: #d1d5db; }
+
+        /* --- TIMELINE PROFISSIONAL --- */
+        .timeline-wrapper {
+            position: relative; max-width: 1000px; margin: 0 auto;
+            padding-left: 40px;
+        }
+        .timeline-line {
+            position: absolute; left: 0; top: 0; bottom: 0; width: 2px;
+            background: linear-gradient(to bottom, var(--neon-primary), rgba(255,255,255,0.05));
+        }
+        
+        .timeline-item {
+            position: relative; margin-bottom: 3.5rem;
+            opacity: 0; transform: translateY(30px); transition: var(--transition-smooth);
+        }
+        .timeline-item.visible { opacity: 1; transform: translateY(0); }
+
+        .timeline-marker {
+            position: absolute; left: -49px; top: 24px;
+            width: 20px; height: 20px; border-radius: 50%;
+            background: var(--bg-deep); border: 2px solid var(--neon-primary);
+            box-shadow: 0 0 15px var(--neon-primary); z-index: 2;
+        }
+        
+        .job-card {
+            background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05);
+            border-radius: var(--radius-md); padding: 2rem;
+            transition: var(--transition-smooth); position: relative;
+        }
+        .job-card:hover {
+            background: rgba(255,255,255,0.04); border-color: var(--neon-primary);
+            transform: translateX(10px);
+            box-shadow: -5px 0 20px rgba(0, 243, 255, 0.1);
+        }
+        
+        .job-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 1rem; flex-wrap: wrap; gap: 10px; }
+        .job-role { font-size: 1.5rem; font-weight: 700; color: #fff; }
+        .job-company { color: var(--neon-primary); font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
+        .job-desc { color: var(--text-muted); }
+
+        /* --- PROJETOS GRID --- */
+        .projects-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2.5rem;
+        }
+        
+        .project-card {
+            background: var(--bg-surface); border-radius: var(--radius-md);
+            border: 1px solid rgba(255,255,255,0.05); overflow: hidden;
+            transition: var(--transition-smooth); display: flex; flex-direction: column;
+            height: 100%; group;
+        }
+        .project-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            border-color: var(--neon-secondary);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+        }
+        
+        .card-media {
+            height: 220px; overflow: hidden; position: relative;
+            background: #000;
+        }
+        .card-media img {
+            width: 100%; height: 100%; object-fit: cover;
+            transition: 0.7s ease; opacity: 0.8;
+        }
+        .project-card:hover .card-media img { transform: scale(1.1); opacity: 1; }
+        
+        /* Fallback icon for missing images */
+        .card-icon-placeholder {
+            width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;
+            background: radial-gradient(circle, rgba(0, 243, 255, 0.1), transparent);
+            font-size: 4rem; color: var(--neon-primary);
         }
 
-        /* --- Habilidades (Tags) --- */
-        .skills-wrapper {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 1rem;
+        .card-content { padding: 2rem; flex-grow: 1; display: flex; flex-direction: column; }
+        .card-content h3 { font-size: 1.4rem; margin-bottom: 0.8rem; }
+        .card-content p { font-size: 1rem; color: var(--text-muted); margin-bottom: 1.5rem; flex-grow: 1; }
+        
+        .card-action { margin-top: auto; }
+        .link-text {
+            color: var(--neon-primary); font-weight: 600; text-decoration: none;
+            display: inline-flex; align-items: center; gap: 5px;
+        }
+        .link-text:hover { text-decoration: underline; }
+
+        /* --- SKILLS --- */
+        .skills-container {
+            display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem;
+        }
+        .skill-capsule {
+            padding: 12px 24px; border-radius: 100px;
+            background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1);
+            color: #fff; font-weight: 600; letter-spacing: 0.5px;
+            display: flex; align-items: center; gap: 10px; transition: 0.3s;
+        }
+        .skill-capsule:hover {
+            background: var(--neon-primary); border-color: var(--neon-primary);
+            color: #000; transform: scale(1.05); box-shadow: 0 0 20px var(--neon-primary);
+        }
+        .skill-capsule ion-icon { font-size: 1.2rem; }
+
+        /* --- PESSOAL (QUEM É ERICKSON) --- */
+        #pessoal { margin-top: 8rem; margin-bottom: 6rem; }
+        .personal-card {
+            display: flex; align-items: center; gap: 4rem;
+            background: linear-gradient(135deg, rgba(255,255,255,0.03), transparent);
+            border: 1px solid var(--glass-border); padding: 4rem; border-radius: var(--radius-lg);
+        }
+        .personal-text { flex: 1; }
+        .personal-text h2 { font-size: 2.8rem; margin-bottom: 1.5rem; }
+        .personal-img {
+            width: 280px; height: 280px; border-radius: 20px; object-fit: cover;
+            border: 2px solid var(--neon-secondary);
+            box-shadow: 20px 20px 0 rgba(0, 98, 255, 0.2);
         }
 
-        .skill-tag {
-            background: rgba(255, 255, 255, 0.05);
-            padding: 12px 24px;
-            border-radius: 50px;
-            border: 1px solid var(--card-border);
-            font-weight: 500;
-            transition: var(--transition);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .skill-tag ion-icon {
-            color: var(--accent);
-            font-size: 1.2rem;
-        }
-
-        .skill-tag:hover {
-            background: rgba(0, 123, 255, 0.1);
-            border-color: var(--primary);
-            transform: scale(1.05);
-        }
-
-        /* --- Quem Sou Eu --- */
-        #me-conheca-melhor .container {
-            background: linear-gradient(135deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
-            padding: 3rem;
-            border-radius: var(--radius);
-            border: 1px solid var(--card-border);
-        }
-
-        /* --- Contato --- */
-        .contact-grid {
-            display: flex;
-            justify-content: center;
-            gap: 3rem;
-            flex-wrap: wrap;
-        }
-
-        .contact-item {
-            text-align: center;
-            cursor: pointer;
-            padding: 2rem;
-            background: var(--card-bg);
-            border-radius: var(--radius);
-            width: 150px;
-            border: 1px solid var(--card-border);
-            transition: var(--transition);
-        }
-
-        .contact-item:hover {
-            border-color: var(--accent);
-            background: rgba(0, 212, 255, 0.05);
-        }
-
-        .contact-item ion-icon {
-            font-size: 3rem;
-            color: var(--text-main);
-            margin-bottom: 1rem;
-        }
-
-        .contact-item:hover ion-icon {
-            color: var(--accent);
-        }
-
-        /* --- Modal --- */
-        .modal-overlay {
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background: rgba(0,0,0,0.8);
-            backdrop-filter: blur(5px);
-            z-index: 2000;
-            display: none;
-            justify-content: center;
-            align-items: center;
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-
-        .modal-overlay.active {
-            display: flex;
-            opacity: 1;
-        }
-
-        .modal-content {
-            background: #1a1b20;
-            padding: 2rem 3rem;
-            border-radius: var(--radius);
-            border: 1px solid var(--primary);
-            text-align: center;
-            position: relative;
-            transform: scale(0.8);
-            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-
-        .modal-overlay.active .modal-content {
-            transform: scale(1);
-        }
-
-        .close-btn {
-            position: absolute;
-            top: 10px; right: 15px;
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: var(--text-muted);
-        }
-        .close-btn:hover { color: #fff; }
-
-        /* --- Footer --- */
+        /* --- FOOTER & CONTACT --- */
+        .contact-section { text-align: center; margin-bottom: 4rem; }
+        .social-links { display: flex; justify-content: center; gap: 2rem; margin-top: 2rem; flex-wrap: wrap; }
+        
         footer {
-            border-top: 1px solid var(--card-border);
-            padding: 2rem;
-            text-align: center;
-            color: var(--text-muted);
-            background: #0b0c10;
+            padding: 3rem 0; border-top: 1px solid rgba(255,255,255,0.05);
+            text-align: center; color: #555; font-size: 0.9rem;
+            background: #010203;
         }
 
-        /* --- Responsividade --- */
-        @media (max-width: 900px) {
-            .hero-wrapper {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-            .hero-text h1 { font-size: 2.5rem; }
-            .timeline::after { left: 31px; }
-            .timeline-item { width: 100%; padding-left: 70px; padding-right: 25px; }
-            .timeline-item:nth-child(even) { left: 0; }
-            .timeline-item:nth-child(odd) { text-align: left; }
-            .timeline-item::after { left: 22px; }
-            .timeline-item:nth-child(even)::after { left: 22px; }
+        /* --- RESPONSIVIDADE --- */
+        @media (max-width: 968px) {
+            .hero-grid { grid-template-columns: 1fr; text-align: center; gap: 3rem; }
+            .hero-content h1 { font-size: 3.5rem; }
+            .hero-content p { margin: 0 auto 2rem auto; border: none; padding: 0; }
+            .profile-wrapper { width: 350px; height: 350px; margin: 0 auto; }
+            
+            .timeline-wrapper { padding-left: 20px; border-left: 2px solid rgba(255,255,255,0.1); }
+            .timeline-line { display: none; }
+            .timeline-marker { display: none; }
+            .job-card { padding: 1.5rem; margin-bottom: 2rem; }
+            
+            .personal-card { flex-direction: column; text-align: center; padding: 2rem; }
+            .story-grid { grid-template-columns: 1fr; text-align: center; }
+            .story-icon { justify-self: center; margin-bottom: 1rem; }
+            
+            nav { display: none; /* Em projetos reais, usaríamos um menu hambúrguer */ }
         }
     </style>
 </head>
 <body>
 
-    <header>
+    <canvas id="neural-canvas"></canvas>
+
+    <header id="navbar">
         <div class="container">
             <nav>
                 <ul>
-                    <li><a href="#sobre">Início</a></li>
-                    <li><a href="#trajetoria">Trajetória</a></li>
+                    <li><a href="#hero" class="active">Home</a></li>
+                    <li><a href="#sobre">História</a></li>
+                    <li><a href="#jornada">Carreira</a></li>
                     <li><a href="#projetos">Projetos</a></li>
-                    <li><a href="#habilidades">Skills</a></li>
-                    <li><a href="#certificacoes">Certificações</a></li>
-                    <li><a href="#me-conheca-melhor">Pessoal</a></li>
-                    <li><a href="#contato">Contato</a></li>
+                    <li><a href="#pessoal">Pessoal</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
     <main>
-        <section id="sobre">
+        <section id="hero">
             <div class="container">
-                <div class="hero-wrapper">
-                    <div class="hero-text fade-in">
-                        <h2 class="highlight">Olá, eu sou Erickson Queiroz</h2>
-                        <h1>Especialista em <br>Infraestrutura & <span class="highlight">Automação</span></h1>
+                <div class="hero-grid">
+                    <div class="hero-content fade-in-up">
+                        <span class="section-tag">Portfólio 2026</span>
+                        <h1>Erickson <br> <span class="gradient-text">Queiroz</span></h1>
                         <p>
-                            Transformo desafios complexos em soluções eficientes. Com forte background em Cibersegurança e Telecomunicações, meu foco atual é <strong>Automação de Processos</strong> e <strong>Desenvolvimento</strong> para otimizar operações e gerar inteligência de dados.
+                            Técnico <strong>De Infraestrutura</strong> migrando para a engenharia <strong>DevOps</strong>. Transformo operações manuais em automação inteligente e escalável.
                         </p>
-                        <div style="margin-top: 2rem;">
-                            <a href="#projetos" class="btn">Ver Projetos</a>
-                            <a href="#contato" class="btn" style="background: transparent; border: 1px solid var(--primary); margin-left: 10px;">Fale Comigo</a>
-                        </div>
-                    </div>
-                    <div class="hero-image-container fade-in">
-                        <img src="perfil.png" alt="Erickson Queiroz" class="hero-image">
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="trajetoria">
-            <div class="container">
-                <h2 class="section-title">Minha <span class="highlight">Jornada</span></h2>
-                
-                <div class="timeline">
-                    <div class="timeline-item">
-                        <div class="timeline-content">
-                            <span class="timeline-date">Atualmente</span>
-                            <h3 class="timeline-title">Técnico de Infraestrutura</h3>
-                            <span class="timeline-company">Softplan</span>
-                            <p style="margin-top: 10px; font-size: 0.9rem; color: #ccc;">
-                                Atuação focada em infraestrutura robusta, suporte crítico e implementação de melhorias no ambiente corporativo.
-                            </p>
-                        </div>
-                    </div>
-
-                    <div class="timeline-item">
-                        <div class="timeline-content">
-                            <span class="timeline-date">Anterior</span>
-                            <h3 class="timeline-title">Analista de Telecomunicações</h3>
-                            <span class="timeline-company">Brisanet</span>
-                            <p style="margin-top: 10px; font-size: 0.9rem; color: #ccc;">
-                                Foco em Automação de Processos, Dashboards, Análise de Performance (4G/5G) e Inteligência de Dados.
-                            </p>
-                        </div>
-                    </div>
-
-                    <div class="timeline-item">
-                        <div class="timeline-content">
-                            <span class="timeline-date">NOC</span>
-                            <h3 class="timeline-title">Analista de NOC</h3>
-                            <span class="timeline-company">MDsystems</span>
-                        </div>
-                    </div>
-
-                    <div class="timeline-item">
-                        <div class="timeline-content">
-                            <span class="timeline-date">Suporte</span>
-                            <h3 class="timeline-title">Analista de Suporte Técnico</h3>
-                            <span class="timeline-company">Tivit</span>
-                        </div>
-                    </div>
-
-                    <div class="timeline-item">
-                        <div class="timeline-content">
-                            <span class="timeline-date">Suporte</span>
-                            <h3 class="timeline-title">Analista de Suporte</h3>
-                            <span class="timeline-company">Stefanini</span>
+                        <div style="display: flex; gap: 20px; flex-wrap: wrap; justify-content: center;"> <a href="#projetos" class="btn">
+                                Ver Projetos <ion-icon name="flash-outline"></ion-icon>
+                            </a>
+                            <a href="https://github.com/erickson45" target="_blank" class="btn-outline btn">
+                                <ion-icon name="logo-github"></ion-icon> GitHub
+                            </a>
                         </div>
                     </div>
                     
+                    <div class="profile-wrapper fade-in-up">
+                        <div class="plasma-ring"></div>
+                        <div class="plasma-ring"></div>
+                        <img src="perfil.png" alt="Erickson Queiroz" class="profile-img">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="sobre" class="story-section">
+            <div class="container">
+                <div class="glass-card fade-in-up">
+                    <div class="story-grid">
+                        <div class="story-icon">
+                            <ion-icon name="trending-up"></ion-icon>
+                        </div>
+                        <div class="story-text">
+                            <h3>Resiliência & Reinvenção</h3>
+                            <p>
+                                Minha trajetória é definida pela coragem de sair da zona de conforto. Comecei minha carreira na tecnologia, no meu primeiro emprego na <strong>Brisanet</strong>, mas senti o chamado para expandir meus horizontes em <strong>São Paulo</strong>.
+                            </p>
+                            <p>
+                                Lá, encarei o desafio de trabalhar como <strong>Garçom</strong> no restaurante Tanka. Foi uma verdadeira escola de vida: aprendi sobre humildade, serviço e como manter a calma sob pressão extrema.
+                            </p>
+                            <p>
+                                Enquanto trabalhava no salão, minha mente continuava focada no código. Estudava nas madrugadas para voltar à área de TI mais forte. Hoje, trago essa "casca grossa" e dedicação total para resolver problemas complexos de infraestrutura.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="jornada" style="padding: 4rem 0;">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-tag">Carreira</span>
+                    <h2 class="section-title">Minha Jornada</h2>
+                </div>
+
+                <div class="timeline-wrapper">
+                    <div class="timeline-line"></div>
+
                     <div class="timeline-item">
-                        <div class="timeline-content">
-                            <span class="timeline-date">Início</span>
-                            <h3 class="timeline-title">Estagiário & Suporte</h3>
-                            <span class="timeline-company">DBcorp / Telecardio / Tanka</span>
+                        <div class="timeline-marker"></div>
+                        <div class="job-card">
+                            <div class="job-header">
+                                <span class="job-role">Técnico de Infraestrutura</span>
+                                <span class="job-company">Softplan • Atualmente</span>
+                            </div>
+                            <p class="job-desc">Gestão de infraestrutura robusta, melhoria contínua de processos e estudos avançados em cultura DevOps.</p>
                         </div>
                     </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-marker"></div>
+                        <div class="job-card">
+                            <div class="job-header">
+                                <span class="job-role">Analista de Telecomunicações</span>
+                                <span class="job-company">Brisanet</span>
+                            </div>
+                            <p class="job-desc">Desenvolvimento de automações com Python, Dashboards de performance 4G/5G e inteligência de dados.</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-marker"></div>
+                        <div class="job-card">
+                            <div class="job-header">
+                                <span class="job-role">Analista de NOC</span>
+                                <span class="job-company">MDsystems</span>
+                            </div>
+                            <p class="job-desc">Monitoramento ativo 24/7 e resposta imediata a incidentes críticos de rede.</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-marker"></div>
+                        <div class="job-card">
+                            <div class="job-header">
+                                <span class="job-role">Analista de Suporte Técnico</span>
+                                <span class="job-company">Tivit</span>
+                            </div>
+                            <p class="job-desc">Suporte especializado N2/N3 para grandes contas corporativas.</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-marker"></div>
+                        <div class="job-card">
+                            <div class="job-header">
+                                <span class="job-role">Analista de Suporte</span>
+                                <span class="job-company">Stefanini</span>
+                            </div>
+                            <p class="job-desc">Gestão de infraestrutura local, atendimento ao usuário e manutenção de hardware.</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-marker"></div>
+                        <div class="job-card">
+                            <div class="job-header">
+                                <span class="job-role">Suporte Técnico</span>
+                                <span class="job-company">DBcorp</span>
+                            </div>
+                            <p class="job-desc">Atuação inicial com suporte a sistemas e manutenção de computadores.</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-marker"></div>
+                        <div class="job-card">
+                            <div class="job-header">
+                                <span class="job-role">Suporte de TI</span>
+                                <span class="job-company">Telecardio</span>
+                            </div>
+                            <p class="job-desc">Suporte a sistemas de saúde, redes locais e configuração de estações.</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-marker" style="background: #fff; border-color: #fff; box-shadow: none;"></div>
+                        <div class="job-card" style="border-left: 3px solid #fff;">
+                            <div class="job-header">
+                                <span class="job-role">Atendimento & Serviços</span>
+                                <span class="job-company" style="color: #fff;">Tanka Restaurante</span>
+                            </div>
+                            <p class="job-desc">Período fundamental de desenvolvimento de soft skills: comunicação, resiliência e trabalho em equipe sob pressão.</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-marker" style="background: var(--neon-secondary); border-color: var(--neon-secondary);"></div>
+                        <div class="job-card">
+                            <div class="job-header">
+                                <span class="job-role">Início de Carreira</span>
+                                <span class="job-company">Brisanet (Primeiro Emprego)</span>
+                            </div>
+                            <p class="job-desc">Onde dei meus primeiros passos profissionais e descobri minha vocação para a tecnologia.</p>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </section>
 
-        <section id="projetos">
+        <section id="projetos" style="padding: 4rem 0;">
             <div class="container">
-                <h2 class="section-title">Projetos <span class="highlight">Selecionados</span></h2>
-                <div class="grid-container">
+                <div class="section-header">
+                    <span class="section-tag">Portfólio</span>
+                    <h2 class="section-title">Projetos & Talks</h2>
+                </div>
+
+                <div class="projects-grid">
                     
-                    <div class="card">
-                        <img src="brisanet.png" alt="Brisanet Automação">
-                        <h3>Automação & Redes Brisanet</h3>
-                        <p>Implementação de sistema de chamados, Chatbots inteligentes e Dashboards analíticos para otimização de rede 4G/5G.</p>
-                        <a href="https://www.linkedin.com/in/erickson-queiroz-90428121b/" target="_blank" class="btn">Ver Detalhes</a>
-                    </div>
-
-                    <div class="card">
-                        <img src="bot.png" alt="Bot de Automação">
-                        <h3>Bot de Consulta de Dados</h3>
-                        <p>Automação complexa que consulta mais de 12 planilhas online simultaneamente, centralizando dados para tomada de decisão rápida.</p>
-                    </div>
-
-                    <div class="card">
-                        <img src="dash.png" alt="Dashboards">
-                        <h3>Dashboards Executivos</h3>
-                        <p>Desenvolvimento de painéis visuais para monitoramento em tempo real de KPIs de infraestrutura e rede.</p>
-                    </div>
-
-                    <div class="card">
-                        <img src="tivit.jpg" alt="Mentoria TIVIT">
-                        <h3>Mentoria TIVIT</h3>
-                        <p>Atuação estratégica orientando jovens talentos na entrada ao mercado de tecnologia.</p>
-                        <a href="#" class="btn">Saiba Mais</a>
-                    </div>
-
-                    <div class="card">
-                        <img src="chamados.png" alt="Sistema de Chamados">
-                        <h3>Sistema de Incidentes</h3>
-                        <p>Gestão de tickets integrada com bots para agilizar o SLA e o atendimento ao usuário final.</p>
-                    </div>
-
-                    <div class="card">
-                        <h3>Automação de E-mail</h3>
-                        <p>Scripts para envio automático de relatórios consolidados sobre a saúde da rede.</p>
-                    </div>
-
-                </div>
-            </div>
-        </section>
-
-        <section id="habilidades">
-            <div class="container">
-                <h2 class="section-title">Stack & <span class="highlight">Skills</span></h2>
-                <div class="skills-wrapper">
-                    <div class="skill-tag"><ion-icon name="shield-checkmark-outline"></ion-icon> Cybersecurity</div>
-                    <div class="skill-tag"><ion-icon name="code-slash-outline"></ion-icon> Python & Automação</div>
-                    <div class="skill-tag"><ion-icon name="bar-chart-outline"></ion-icon> Power BI & Looker</div>
-                    <div class="skill-tag"><ion-icon name="server-outline"></ion-icon> Infraestrutura Linux/Win</div>
-                    <div class="skill-tag"><ion-icon name="globe-outline"></ion-icon> Redes 4G/5G</div>
-                    <div class="skill-tag"><ion-icon name="cloud-outline"></ion-icon> AWS & Azure</div>
-                    <div class="skill-tag"><ion-icon name="construct-outline"></ion-icon> SQL & Excel Avançado</div>
-                    <div class="skill-tag"><ion-icon name="people-outline"></ion-icon> Liderança Técnica</div>
-                </div>
-            </div>
-        </section>
-
-        <section id="certificacoes">
-            <div class="container">
-                <h2 class="section-title">Certificações</h2>
-                <div class="grid-container">
-                    <div class="card" style="text-align: center;">
-                        <img src="google.jpg" alt="Google Security" style="height: 120px; width: auto; margin: 0 auto 20px;">
-                        <h3>Google Cybersecurity</h3>
-                        <p>Professional Certificate V2</p>
-                    </div>
-                    <div class="card" style="text-align: center;">
-                        <img src="cisco.png" alt="Cisco Security" style="height: 120px; width: auto; margin: 0 auto 20px;">
-                        <h3>Cisco Analyst</h3>
-                        <p>Junior Cybersecurity Career Path</p>
-                    </div>
-                    <div class="card">
-                        <h3>Outras Qualificações</h3>
-                        <ul style="list-style: none; text-align: left; margin-top: 10px;">
-                            <li style="margin-bottom: 8px;">• Segurança da Informação</li>
-                            <li style="margin-bottom: 8px;">• Inteligência Artificial Aplicada</li>
-                            <li style="margin-bottom: 8px;">• Cloud Computing (Conceitos)</li>
-                            <li>• Redes e Telecom Avançado</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="me-conheca-melhor">
-            <div class="container">
-                <div class="hero-wrapper">
-                    <div class="hero-text">
-                        <h2>Quem é o <span class="highlight">Erickson?</span></h2>
-                        <p>
-                            Além dos códigos e servidores, sou um entusiasta da vida. Nordestino "raiz", trago comigo a garra de quem não desiste nunca. Sou movido a desafios (e não preciso de café para ficar ligado no 220v!).
-                        </p>
-                        <p>
-                            Apaixonado por jogos online, trilhas e viagens. Para mim, a tecnologia é o meio, mas a solução de problemas reais das pessoas é o fim.
-                        </p>
-                    </div>
-                    <div class="hero-image-container">
-                        <img src="eu.jpg" alt="Foto Pessoal" class="hero-image" style="border-radius: 20px;">
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="contato">
-            <div class="container">
-                <h2 class="section-title">Vamos <span class="highlight">Conversar?</span></h2>
-                <div class="contact-grid">
-                    <div class="contact-item" onclick="showContactModal('Email', 'erickson.queiroz65@gmail.com')">
-                        <ion-icon name="mail-outline"></ion-icon>
-                        <p>E-mail</p>
-                    </div>
-                    <a href="https://www.linkedin.com/in/erickson-queiroz-90428121b/" target="_blank" style="text-decoration: none;">
-                        <div class="contact-item">
-                            <ion-icon name="logo-linkedin"></ion-icon>
-                            <p>LinkedIn</p>
+                    <div class="project-card fade-in-up">
+                        <div class="card-media">
+                            <img src="brisanet.png" alt="Palestras Tech">
                         </div>
+                        <div class="card-content">
+                            <h3>Speaker & Comunidade</h3>
+                            <p>Palestra ministrada sobre "IA sem Mistérios". Compartilhando conhecimento técnico com a comunidade.</p>
+                            <div class="card-action">
+                                <a href="https://www.linkedin.com/in/erickson-queiroz-90428121b/" target="_blank" class="link-text">
+                                    Ver no LinkedIn <ion-icon name="arrow-forward"></ion-icon>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-card fade-in-up">
+                        <div class="card-media">
+                            <div class="card-icon-placeholder"><ion-icon name="git-network-outline"></ion-icon></div>
+                        </div>
+                        <div class="card-content">
+                            <h3>Automação de Redes</h3>
+                            <p>Sistema de chamados customizado e Chatbots inteligentes para otimização de performance da rede 4G/5G.</p>
+                        </div>
+                    </div>
+
+                    <div class="project-card fade-in-up">
+                        <div class="card-media">
+                            <img src="bot.png" alt="Bot RPA">
+                        </div>
+                        <div class="card-content">
+                            <h3>Bot RPA de Dados</h3>
+                            <p>Robô de automação que consulta 12 fontes de dados simultaneamente para centralizar a tomada de decisão.</p>
+                        </div>
+                    </div>
+
+                    <div class="project-card fade-in-up">
+                        <div class="card-media">
+                            <img src="dash.png" alt="Dashboards">
+                        </div>
+                        <div class="card-content">
+                            <h3>Dashboards Executivos</h3>
+                            <p>Painéis de monitoramento em tempo real de KPIs críticos de infraestrutura e SLA.</p>
+                        </div>
+                    </div>
+
+                    <div class="project-card fade-in-up">
+                        <div class="card-media">
+                            <img src="tivit.jpg" alt="Mentoria">
+                        </div>
+                        <div class="card-content">
+                            <h3>Mentoria TIVIT</h3>
+                            <p>Orientação estratégica de novos talentos na entrada ao mercado de tecnologia.</p>
+                        </div>
+                    </div>
+
+                    <div class="project-card fade-in-up">
+                        <div class="card-media">
+                            <img src="chamados.png" alt="Gestão de Incidentes">
+                        </div>
+                        <div class="card-content">
+                            <h3>Gestão de Incidentes</h3>
+                            <p>Integração de sistemas de tickets com bots para agilizar o SLA e o atendimento.</p>
+                        </div>
+                    </div>
+
+                    <div class="project-card fade-in-up">
+                        <div class="card-media">
+                            <div class="card-icon-placeholder" style="color: var(--neon-secondary);"><ion-icon name="mail-unread-outline"></ion-icon></div>
+                        </div>
+                        <div class="card-content">
+                            <h3>Automação de E-mail</h3>
+                            <p>Scripts Python para envio automático e programado de relatórios de saúde da rede.</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <section id="skills" style="padding: 2rem 0;">
+            <div class="container">
+                <div class="section-header" style="margin-bottom: 3rem;">
+                    <h2 class="section-title" style="font-size: 2.5rem;">Tech Stack</h2>
+                </div>
+                <div class="skills-container">
+                    <div class="skill-capsule"><ion-icon name="logo-python"></ion-icon> Python Automation</div>
+                    <div class="skill-capsule"><ion-icon name="server-outline"></ion-icon> Linux Hardening</div>
+                    <div class="skill-capsule"><ion-icon name="cloud-done-outline"></ion-icon> AWS & Azure</div>
+                    <div class="skill-capsule"><ion-icon name="shield-checkmark-outline"></ion-icon> Cybersecurity</div>
+                    <div class="skill-capsule"><ion-icon name="bar-chart-outline"></ion-icon> Power BI</div>
+                    <div class="skill-capsule"><ion-icon name="people-outline"></ion-icon> Tech Leadership</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="pessoal">
+            <div class="container">
+                <div class="personal-card fade-in-up">
+                    <div class="personal-text">
+                        <h2>Quem é o Erickson?</h2>
+                        <p style="color: #ccc; font-size: 1.1rem; margin-bottom: 1.5rem;">
+                            Além dos códigos e servidores, sou um entusiasta da vida. Nordestino "raiz", trago comigo a garra de quem não desiste nunca.
+                        </p>
+                        <p style="color: #ccc; font-size: 1.1rem;">
+                            Sou movido a desafios e não preciso de café para ficar ligado no 220v! Nas horas vagas, gosto de jogos online, trilhas e de estar conectado com pessoas. Acredito que a tecnologia é o meio, mas as pessoas são o fim.
+                        </p>
+                    </div>
+                    <div>
+                        <img src="eu.jpg" alt="Foto Pessoal" class="personal-img">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contato" class="contact-section">
+            <div class="container">
+                <h2 class="section-title" style="font-size: 2.5rem; margin-bottom: 2rem;">Vamos Conversar?</h2>
+                <div class="social-links">
+                    <a href="mailto:erickson.queiroz65@gmail.com" class="btn">
+                        <ion-icon name="mail-outline"></ion-icon> Enviar E-mail
                     </a>
-                    <div class="contact-item" onclick="showContactModal('Telefone / WhatsApp', '(11) 98571-8700')">
-                        <ion-icon name="logo-whatsapp"></ion-icon>
-                        <p>WhatsApp</p>
-                    </div>
+                    <a href="https://www.linkedin.com/in/erickson-queiroz-90428121b/" target="_blank" class="btn">
+                        <ion-icon name="logo-linkedin"></ion-icon> LinkedIn
+                    </a>
+                    <a href="#" class="btn" onclick="alert('WhatsApp: (11) 98571-8700')">
+                        <ion-icon name="logo-whatsapp"></ion-icon> WhatsApp
+                    </a>
                 </div>
             </div>
         </section>
+
     </main>
 
     <footer>
         <div class="container">
-            <p>&copy; 2025 Erickson Queiroz. Desenvolvido com foco em performance e design.</p>
+            <p>&copy; 2026 Erickson Queiroz. Desenvolvido com excelência.</p>
         </div>
     </footer>
 
-    <div id="contact-modal" class="modal-overlay">
-        <div class="modal-content">
-            <span class="close-btn" onclick="closeModal()">&times;</span>
-            <h3 id="modal-title" style="color: var(--primary); margin-bottom: 15px;"></h3>
-            <p id="modal-info" style="font-size: 1.2rem; user-select: text;"></p>
-        </div>
-    </div>
-
     <script>
-        // Intersection Observer para animações de scroll
+        // --- CONFIGURAÇÃO CANVAS ---
+        const canvas = document.getElementById('neural-canvas');
+        const ctx = canvas.getContext('2d');
+        let width, height;
+        let particles = [];
+
+        function resize() {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resize);
+        resize();
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * width;
+                this.y = Math.random() * height;
+                this.vx = (Math.random() - 0.5) * 0.4;
+                this.vy = (Math.random() - 0.5) * 0.4;
+                this.size = Math.random() * 2 + 0.5;
+                // Cores do tema (Azul/Ciano)
+                const colors = ['#00f3ff', '#0062ff', '#ffffff'];
+                this.color = colors[Math.floor(Math.random() * colors.length)];
+            }
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+                if (this.x < 0 || this.x > width) this.vx *= -1;
+                if (this.y < 0 || this.y > height) this.vy *= -1;
+            }
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fillStyle = this.color;
+                ctx.fill();
+            }
+        }
+
+        function initParticles() {
+            particles = [];
+            for (let i = 0; i < 90; i++) particles.push(new Particle());
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, width, height);
+            
+            for (let i = 0; i < particles.length; i++) {
+                let p1 = particles[i];
+                p1.update();
+                p1.draw();
+                for (let j = i + 1; j < particles.length; j++) {
+                    let p2 = particles[j];
+                    let dx = p1.x - p2.x;
+                    let dy = p1.y - p2.y;
+                    let dist = Math.sqrt(dx*dx + dy*dy);
+                    if (dist < 130) {
+                        ctx.beginPath();
+                        ctx.strokeStyle = `rgba(0, 243, 255, ${0.15 - dist/1000})`;
+                        ctx.lineWidth = 0.5;
+                        ctx.moveTo(p1.x, p1.y);
+                        ctx.lineTo(p2.x, p2.y);
+                        ctx.stroke();
+                    }
+                }
+            }
+            requestAnimationFrame(animate);
+        }
+
+        initParticles();
+        animate();
+
+        // --- ANIMATION OBSERVER ---
+        const observerOptions = { threshold: 0.1 };
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('visible');
-                    // Para animação simples de fade
-                    if(entry.target.classList.contains('fade-in')) {
-                        entry.target.style.opacity = 1;
-                        entry.target.style.transform = 'translateY(0)';
-                    }
+                    entry.target.style.opacity = 1;
+                    entry.target.style.transform = 'translateY(0)';
                 }
             });
-        }, { threshold: 0.1 });
+        }, observerOptions);
 
-        // Observar itens da timeline
-        document.querySelectorAll('.timeline-item').forEach(el => observer.observe(el));
-        
-        // Observar elementos fade-in
-        document.querySelectorAll('.fade-in').forEach(el => {
+        document.querySelectorAll('.fade-in-up, .timeline-item').forEach(el => {
             el.style.opacity = 0;
-            el.style.transform = 'translateY(20px)';
-            el.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+            el.style.transform = 'translateY(40px)';
+            el.style.transition = 'all 0.8s cubic-bezier(0.25, 1, 0.5, 1)';
             observer.observe(el);
         });
 
-        // Modal Logic
-        const modal = document.getElementById('contact-modal');
-        const modalTitle = document.getElementById('modal-title');
-        const modalInfo = document.getElementById('modal-info');
-
-        function showContactModal(title, info) {
-            modalTitle.textContent = title;
-            modalInfo.textContent = info;
-            modal.classList.add('active');
-        }
-
-        function closeModal() {
-            modal.classList.remove('active');
-        }
-
-        modal.addEventListener('click', (e) => {
-            if (e.target === modal) closeModal();
+        // --- NAVBAR SCROLL EFFECT ---
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
         });
     </script>
 </body>
