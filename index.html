@@ -3,39 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Portfólio de Erickson Queiroz - Infraestrutura, DevOps e Automação.">
-    <title>Erickson Queiroz | Infraestrutura & Future DevOps</title>
+    <meta name="description" content="Portfólio de Erickson Queiroz - Desenvolvedor de Automação e AIOps.">
+    <title>Erickson Queiroz | Desenvolvedor de Automação & IA</title>
     
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700;800&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     
     <style>
         :root {
-            /* --- PALETA "BLUE PLASMA" --- */
-            --bg-deep: #020408;
-            --bg-surface: #0a0f18;
+            /* --- PALETA "CORPORATE TECH" PREMIUM --- */
+            --bg-deep: #030712; /* Azul quase preto, mais rico */
+            --bg-surface: #0f172a;
             
-            --neon-primary: #00f3ff; /* Ciano Elétrico */
-            --neon-secondary: #0062ff; /* Azul Laser */
-            --neon-accent: #ff003c; /* Vermelho (Detalhes sutis de calor) */
+            --neon-primary: #00e5ff; /* Ciano Tecnológico Brilhante */
+            --neon-secondary: #3b82f6; /* Azul Corporativo Vibrante */
+            --neon-accent: #ef4444; 
             
-            --text-main: #ffffff;
+            --text-main: #f8fafc;
             --text-muted: #94a3b8;
             --text-dark: #0f172a;
             
-            --glass-bg: rgba(10, 15, 25, 0.65);
-            --glass-border: rgba(0, 243, 255, 0.15);
-            --glass-shine: rgba(255, 255, 255, 0.05);
+            --glass-bg: rgba(15, 23, 42, 0.7);
+            --glass-border: rgba(0, 229, 255, 0.15);
             
-            --radius-sm: 8px;
-            --radius-md: 16px;
-            --radius-lg: 30px;
+            /* Bordas mais retas/quadradas (estilo IDE/Dashboard) */
+            --radius-sm: 4px;
+            --radius-md: 8px;
+            --radius-lg: 12px;
             
-            --transition-smooth: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+            --transition-smooth: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
         }
 
         /* --- RESET & BASE --- */
@@ -52,11 +52,35 @@
 
         html { scroll-behavior: smooth; }
 
-        /* --- CANVAS BACKGROUND --- */
+        /* --- BACKGROUND TECH GRID & GLOW INTERATIVO --- */
         #neural-canvas {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -2;
+            background-color: var(--bg-deep);
+            background-image: 
+                linear-gradient(rgba(0, 229, 255, 0.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 229, 255, 0.04) 1px, transparent 1px);
+            background-size: 50px 50px;
+        }
+        
+        /* Luz sutil no topo fixa */
+        .bg-glow-static {
+            position: fixed; top: -20vh; left: 50%; transform: translateX(-50%);
+            width: 80vw; height: 60vh; 
+            background: radial-gradient(ellipse at center, rgba(59, 130, 246, 0.15) 0%, transparent 60%);
+            z-index: -1; pointer-events: none;
+        }
+
+        /* Luz que segue o mouse (Efeito WOW) */
+        .mouse-glow {
+            position: fixed;
+            width: 600px; height: 600px;
+            background: radial-gradient(circle, rgba(0, 229, 255, 0.08) 0%, transparent 60%);
+            border-radius: 50%;
+            pointer-events: none;
+            transform: translate(-50%, -50%);
             z-index: -1;
-            background: radial-gradient(circle at 50% 0%, #081020 0%, #020408 80%);
+            transition: width 0.3s, height 0.3s;
         }
 
         /* --- TYPOGRAPHY & UTILS --- */
@@ -65,75 +89,65 @@
         h1, h2, h3, h4 { font-family: 'Outfit', sans-serif; letter-spacing: -0.02em; color: #fff; }
         
         .gradient-text {
-            background: linear-gradient(135deg, #fff 30%, var(--neon-primary) 100%);
+            background: linear-gradient(135deg, #fff 20%, var(--neon-primary) 100%);
             -webkit-background-clip: text; -webkit-text-fill-color: transparent;
         }
         
         .highlight { color: var(--neon-primary); font-weight: 700; }
 
-        .section-header { text-align: center; margin-bottom: 5rem; position: relative; }
+        .section-header { text-align: left; margin-bottom: 4rem; position: relative; border-left: 4px solid var(--neon-primary); padding-left: 20px; }
         .section-tag {
-            display: inline-block; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 3px;
-            color: var(--neon-primary); margin-bottom: 1rem; font-weight: 700;
-            padding: 6px 16px; border: 1px solid rgba(0, 243, 255, 0.2); border-radius: 50px;
-            background: rgba(0, 243, 255, 0.05);
+            display: inline-block; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px;
+            color: var(--neon-primary); margin-bottom: 0.5rem; font-weight: 700;
+            font-family: 'JetBrains Mono', monospace;
         }
         .section-title {
-            font-size: 3.5rem; font-weight: 800; text-transform: uppercase;
-            background: linear-gradient(to bottom, #fff, #64748b);
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            font-size: 3rem; font-weight: 800; text-transform: uppercase;
+            color: #fff; line-height: 1.1;
         }
 
-        /* --- BUTTONS --- */
+        /* --- BUTTONS (Square/Corporate) --- */
         .btn {
             display: inline-flex; align-items: center; gap: 10px;
-            padding: 16px 32px; border-radius: 50px;
-            font-family: 'Outfit', sans-serif; font-weight: 600; text-transform: uppercase; letter-spacing: 1px;
-            text-decoration: none; color: #000;
+            padding: 14px 28px; border-radius: var(--radius-sm);
+            font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;
+            text-decoration: none; color: var(--bg-deep);
             background: var(--neon-primary);
             position: relative; overflow: hidden;
             transition: var(--transition-smooth);
-            box-shadow: 0 0 20px rgba(0, 243, 255, 0.4);
-            border: none; cursor: pointer;
+            border: 1px solid var(--neon-primary); cursor: pointer;
         }
-        .btn::before {
-            content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.8), transparent);
-            transition: 0.5s;
+        .btn::after {
+            content: ''; position: absolute; bottom: 0; right: 0; width: 8px; height: 8px;
+            background: rgba(255,255,255,0.8);
         }
-        .btn:hover::before { left: 100%; }
-        .btn:hover { transform: translateY(-4px); box-shadow: 0 0 40px rgba(0, 243, 255, 0.7); }
+        .btn:hover { background: transparent; color: var(--neon-primary); box-shadow: 0 0 20px rgba(0, 229, 255, 0.3) inset; }
 
         .btn-outline {
-            background: transparent; border: 1px solid var(--neon-primary); color: #fff;
-            box-shadow: none;
+            background: transparent; color: var(--text-main); border-color: rgba(255,255,255,0.3);
         }
-        .btn-outline:hover {
-            background: rgba(0, 243, 255, 0.1); color: var(--neon-primary);
-            box-shadow: 0 0 30px rgba(0, 243, 255, 0.3);
-        }
+        .btn-outline::after { background: var(--neon-primary); }
+        .btn-outline:hover { background: rgba(255,255,255,0.05); color: #fff; border-color: #fff; }
 
         /* --- HEADER NAV --- */
         header {
             position: fixed; top: 0; width: 100%; z-index: 1000;
             padding: 20px 0; transition: 0.4s;
-        }
-        header.scrolled {
-            background: rgba(2, 4, 8, 0.85); backdrop-filter: blur(20px);
-            padding: 15px 0; border-bottom: 1px solid rgba(255,255,255,0.05);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            background: rgba(3, 7, 18, 0.7); backdrop-filter: blur(12px);
         }
         
-        nav ul { display: flex; justify-content: center; list-style: none; gap: 40px; }
+        nav { display: flex; justify-content: space-between; align-items: center; }
+        
+        .logo { font-family: 'JetBrains Mono', monospace; font-size: 1.2rem; font-weight: 700; color: #fff; text-decoration: none; }
+        .logo span { color: var(--neon-primary); }
+
+        nav ul { display: flex; list-style: none; gap: 30px; }
         nav a {
-            color: var(--text-muted); text-decoration: none; font-weight: 500; font-size: 0.95rem;
-            text-transform: uppercase; letter-spacing: 1px; position: relative; transition: 0.3s;
+            color: var(--text-muted); text-decoration: none; font-weight: 500; font-size: 0.85rem;
+            text-transform: uppercase; letter-spacing: 1px; transition: 0.3s;
         }
-        nav a::after {
-            content: ''; position: absolute; bottom: -5px; left: 0; width: 0; height: 2px;
-            background: var(--neon-primary); transition: 0.3s; box-shadow: 0 0 10px var(--neon-primary);
-        }
-        nav a:hover, nav a.active { color: #fff; }
-        nav a:hover::after { width: 100%; }
+        nav a:hover, nav a.active { color: var(--neon-primary); text-shadow: 0 0 10px rgba(0,229,255,0.5); }
 
         /* --- HERO SECTION --- */
         #hero {
@@ -146,39 +160,40 @@
         }
         
         .hero-content h1 {
-            font-size: 4.8rem; line-height: 1.1; margin-bottom: 1.5rem; font-weight: 800;
+            font-size: 4.2rem; line-height: 1.1; margin-bottom: 1.5rem; font-weight: 800;
         }
         .hero-content p {
-            font-size: 1.25rem; color: var(--text-muted); margin-bottom: 3rem;
-            max-width: 600px; border-left: 4px solid var(--neon-primary); padding-left: 24px;
+            font-size: 1.15rem; color: var(--text-muted); margin-bottom: 3rem;
+            max-width: 600px;
         }
 
-        /* Foto com Animação "Plasma Ring" */
+        /* Foto Corporativa Brilhante */
         .profile-wrapper {
-            position: relative; display: flex; justify-content: center; align-items: center;
-            width: 450px; height: 450px;
+            display: flex; justify-content: center; align-items: center;
         }
         
-        .plasma-ring {
-            position: absolute; width: 100%; height: 100%; border-radius: 50%;
-            background: conic-gradient(from 0deg, transparent 0%, var(--neon-primary) 50%, transparent 100%);
-            animation: spin 4s linear infinite;
-            mask-image: radial-gradient(transparent 62%, black 64%);
-            -webkit-mask-image: radial-gradient(transparent 62%, black 64%);
+        .tech-frame {
+            position: relative; width: 380px; height: 380px; padding: 15px;
         }
-        .plasma-ring:nth-child(2) {
-            animation-duration: 10s; animation-direction: reverse;
-            background: conic-gradient(from 180deg, transparent 0%, var(--neon-secondary) 50%, transparent 100%);
+        
+        /* Cantos interativos simulando um dashboard target */
+        .tech-frame::before, .tech-frame::after {
+            content: ''; position: absolute; width: 40px; height: 40px;
+            border: 2px solid var(--neon-primary); z-index: 10; transition: var(--transition-smooth);
         }
+        .tech-frame::before { top: 0; left: 0; border-right: none; border-bottom: none; }
+        .tech-frame::after { bottom: 0; right: 0; border-left: none; border-top: none; }
+        
+        .tech-frame:hover::before, .tech-frame:hover::after { width: 100%; height: 100%; opacity: 0.2; }
 
         .profile-img {
-            width: 88%; height: 88%; object-fit: cover; border-radius: 50%;
+            width: 100%; height: 100%; object-fit: cover; border-radius: var(--radius-sm);
             z-index: 2; position: relative;
-            border: 2px solid rgba(255,255,255,0.1);
-            box-shadow: 0 0 50px rgba(0, 243, 255, 0.2);
+            background: var(--bg-surface);
+            border: 1px solid rgba(255,255,255,0.1);
+            /* REMOVIDO: filtros escuros. Adicionado brilho sutil */
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
         }
-        
-        @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
 
         /* --- SOBRE (STORYTELLING) --- */
         .story-section { padding: 6rem 0; }
@@ -186,222 +201,263 @@
         .glass-card {
             background: var(--glass-bg);
             border: 1px solid var(--glass-border);
-            border-radius: var(--radius-lg);
+            border-radius: var(--radius-md);
             padding: 4rem; position: relative; overflow: hidden;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-            backdrop-filter: blur(12px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+            border-left: 4px solid var(--neon-primary);
         }
-        
-        /* Efeito de brilho "passando" no card */
-        .glass-card::before {
-            content: ''; position: absolute; top: 0; left: -150%; width: 100%; height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.05), transparent);
-            transform: skewX(-25deg); transition: 0.5s; animation: shine 8s infinite;
-        }
-        @keyframes shine { 0% { left: -150%; } 20% { left: 150%; } 100% { left: 150%; } }
 
-        .story-grid { display: grid; grid-template-columns: 80px 1fr; gap: 2rem; }
-        .story-icon { font-size: 4rem; color: var(--neon-primary); }
+        .story-grid { display: grid; grid-template-columns: 60px 1fr; gap: 2rem; }
+        .story-icon { font-size: 3rem; color: var(--neon-primary); }
         .story-text h3 { font-size: 2rem; margin-bottom: 1.5rem; color: #fff; }
-        .story-text p { margin-bottom: 1.2rem; font-size: 1.1rem; color: #d1d5db; }
+        .story-text p { margin-bottom: 1.2rem; font-size: 1.05rem; color: var(--text-muted); }
 
         /* --- TIMELINE PROFISSIONAL --- */
         .timeline-wrapper {
-            position: relative; max-width: 1000px; margin: 0 auto;
+            position: relative; max-width: 1000px;
             padding-left: 40px;
         }
         .timeline-line {
-            position: absolute; left: 0; top: 0; bottom: 0; width: 2px;
-            background: linear-gradient(to bottom, var(--neon-primary), rgba(255,255,255,0.05));
+            position: absolute; left: 0; top: 0; bottom: 0; width: 1px;
+            background: rgba(255,255,255,0.15);
         }
         
         .timeline-item {
-            position: relative; margin-bottom: 3.5rem;
-            opacity: 0; transform: translateY(30px); transition: var(--transition-smooth);
+            position: relative; margin-bottom: 3rem;
+            opacity: 0; transform: translateY(20px); transition: var(--transition-smooth);
         }
         .timeline-item.visible { opacity: 1; transform: translateY(0); }
 
+        /* Losangos corporativos na timeline */
         .timeline-marker {
-            position: absolute; left: -49px; top: 24px;
-            width: 20px; height: 20px; border-radius: 50%;
+            position: absolute; left: -46px; top: 28px;
+            width: 12px; height: 12px;
             background: var(--bg-deep); border: 2px solid var(--neon-primary);
-            box-shadow: 0 0 15px var(--neon-primary); z-index: 2;
+            transform: rotate(45deg); 
+            z-index: 2;
         }
         
         .job-card {
-            background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05);
-            border-radius: var(--radius-md); padding: 2rem;
+            background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.08);
+            border-radius: var(--radius-sm); padding: 2rem;
             transition: var(--transition-smooth); position: relative;
         }
         .job-card:hover {
-            background: rgba(255,255,255,0.04); border-color: var(--neon-primary);
-            transform: translateX(10px);
-            box-shadow: -5px 0 20px rgba(0, 243, 255, 0.1);
+            background: rgba(0, 229, 255, 0.03); border-color: rgba(0, 229, 255, 0.4);
+            transform: translateX(5px);
         }
         
         .job-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 1rem; flex-wrap: wrap; gap: 10px; }
-        .job-role { font-size: 1.5rem; font-weight: 700; color: #fff; }
-        .job-company { color: var(--neon-primary); font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
-        .job-desc { color: var(--text-muted); }
+        .job-role { font-size: 1.3rem; font-weight: 700; color: #fff; font-family: 'Outfit', sans-serif; }
+        .job-company { color: var(--neon-primary); font-weight: 600; text-transform: uppercase; letter-spacing: 1px; font-size: 0.85rem; }
+        .job-desc { color: var(--text-muted); font-size: 0.95rem; }
 
-        /* --- PROJETOS GRID --- */
+        /* --- PROJETOS GRID (IMAGENS VIVAS) --- */
         .projects-grid {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2.5rem;
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2rem;
         }
         
         .project-card {
             background: var(--bg-surface); border-radius: var(--radius-md);
-            border: 1px solid rgba(255,255,255,0.05); overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.08); overflow: hidden;
             transition: var(--transition-smooth); display: flex; flex-direction: column;
-            height: 100%; group;
+            height: 100%; position: relative;
         }
-        .project-card:hover {
-            transform: translateY(-10px) scale(1.02);
-            border-color: var(--neon-secondary);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+        .project-card::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 3px;
+            background: transparent; transition: 0.3s; z-index: 10;
         }
+        .project-card:hover::before { background: var(--neon-primary); }
+        .project-card:hover { transform: translateY(-5px); border-color: rgba(255,255,255,0.15); box-shadow: 0 15px 35px rgba(0,0,0,0.4); }
         
         .card-media {
-            height: 220px; overflow: hidden; position: relative;
-            background: #000;
+            height: 200px; overflow: hidden; position: relative;
+            background: #000; border-bottom: 1px solid rgba(255,255,255,0.05);
         }
         .card-media img {
             width: 100%; height: 100%; object-fit: cover;
-            transition: 0.7s ease; opacity: 0.8;
+            transition: 0.5s ease; opacity: 0.9; /* Imagens vivas! */
         }
-        .project-card:hover .card-media img { transform: scale(1.1); opacity: 1; }
+        .project-card:hover .card-media img { transform: scale(1.05); opacity: 1; }
         
-        /* Fallback icon for missing images */
         .card-icon-placeholder {
             width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;
-            background: radial-gradient(circle, rgba(0, 243, 255, 0.1), transparent);
-            font-size: 4rem; color: var(--neon-primary);
+            background: rgba(0, 229, 255, 0.05);
+            font-size: 3rem; color: var(--text-muted);
         }
+        .project-card:hover .card-icon-placeholder { color: var(--neon-primary); }
 
-        .card-content { padding: 2rem; flex-grow: 1; display: flex; flex-direction: column; }
-        .card-content h3 { font-size: 1.4rem; margin-bottom: 0.8rem; }
-        .card-content p { font-size: 1rem; color: var(--text-muted); margin-bottom: 1.5rem; flex-grow: 1; }
+        .card-content { padding: 1.5rem; flex-grow: 1; display: flex; flex-direction: column; }
+        .card-content h3 { font-size: 1.2rem; margin-bottom: 0.8rem; }
+        .card-content p { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1.5rem; flex-grow: 1; }
         
-        .card-action { margin-top: auto; }
-        .link-text {
-            color: var(--neon-primary); font-weight: 600; text-decoration: none;
-            display: inline-flex; align-items: center; gap: 5px;
+        .card-action { margin-top: auto; display: flex; gap: 8px; flex-wrap: wrap; }
+        .card-tag {
+            font-family: 'JetBrains Mono', monospace; font-size: 0.65rem;
+            color: var(--neon-primary); background: rgba(0, 229, 255, 0.05);
+            padding: 4px 8px; border: 1px solid rgba(0, 229, 255, 0.2); border-radius: 2px;
         }
-        .link-text:hover { text-decoration: underline; }
 
-        /* --- SKILLS --- */
+        /* --- CERTIFICAÇÕES --- */
+        .cert-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;
+        }
+        .cert-card {
+            background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08);
+            border-radius: var(--radius-sm); padding: 15px 20px;
+            display: flex; align-items: center; gap: 20px;
+            transition: var(--transition-smooth);
+        }
+        .cert-card:hover { border-color: rgba(255,255,255,0.25); background: rgba(255,255,255,0.06); transform: translateY(-3px); }
+        .cert-img {
+            width: 60px; height: 60px; flex-shrink: 0; background: #fff;
+            border-radius: var(--radius-sm); padding: 8px;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .cert-img img { max-width: 100%; max-height: 100%; object-fit: contain; }
+        .cert-info h3 { font-size: 1rem; margin-bottom: 2px; color: #fff; }
+        .cert-info p { font-size: 0.8rem; color: var(--text-muted); font-family: 'JetBrains Mono', monospace; }
+
+        /* --- SKILLS DASHBOARD --- */
         .skills-container {
-            display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem;
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;
         }
         .skill-capsule {
-            padding: 12px 24px; border-radius: 100px;
-            background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1);
-            color: #fff; font-weight: 600; letter-spacing: 0.5px;
-            display: flex; align-items: center; gap: 10px; transition: 0.3s;
+            padding: 15px; border-radius: var(--radius-sm);
+            background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.08);
+            color: #fff; font-weight: 500; font-size: 0.95rem;
+            display: flex; align-items: center; gap: 12px; transition: 0.3s;
+            border-left: 3px solid rgba(255,255,255,0.3);
         }
         .skill-capsule:hover {
-            background: var(--neon-primary); border-color: var(--neon-primary);
-            color: #000; transform: scale(1.05); box-shadow: 0 0 20px var(--neon-primary);
+            background: rgba(0, 229, 255, 0.05); border-color: rgba(0, 229, 255, 0.4);
+            border-left: 3px solid var(--neon-primary); color: var(--neon-primary);
+            transform: translateY(-2px);
         }
-        .skill-capsule ion-icon { font-size: 1.2rem; }
+        .skill-capsule ion-icon { font-size: 1.4rem; color: var(--text-muted); transition: 0.3s;}
+        .skill-capsule:hover ion-icon { color: var(--neon-primary); }
 
-        /* --- PESSOAL (QUEM É ERICKSON) --- */
-        #pessoal { margin-top: 8rem; margin-bottom: 6rem; }
+        /* --- PESSOAL (FOTO VIVA) --- */
+        #pessoal { margin-top: 6rem; margin-bottom: 6rem; }
         .personal-card {
             display: flex; align-items: center; gap: 4rem;
-            background: linear-gradient(135deg, rgba(255,255,255,0.03), transparent);
-            border: 1px solid var(--glass-border); padding: 4rem; border-radius: var(--radius-lg);
+            background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.08); 
+            padding: 4rem; border-radius: var(--radius-md);
+            border-right: 4px solid var(--neon-secondary);
         }
         .personal-text { flex: 1; }
-        .personal-text h2 { font-size: 2.8rem; margin-bottom: 1.5rem; }
-        .personal-img {
-            width: 280px; height: 280px; border-radius: 20px; object-fit: cover;
-            border: 2px solid var(--neon-secondary);
-            box-shadow: 20px 20px 0 rgba(0, 98, 255, 0.2);
+        .personal-text h2 { font-size: 2.5rem; margin-bottom: 1.5rem; }
+        .personal-text p { color: var(--text-muted); font-size: 1.05rem; margin-bottom: 1.2rem; }
+        
+        .personal-img-wrapper {
+            position: relative; width: 280px; height: 280px;
         }
+        .personal-img-wrapper::before {
+            content: ''; position: absolute; top: 15px; left: 15px; width: 100%; height: 100%;
+            border: 2px solid var(--neon-secondary); border-radius: var(--radius-sm); z-index: 1;
+            transition: 0.3s;
+        }
+        .personal-img {
+            width: 100%; height: 100%; object-fit: cover; border-radius: var(--radius-sm);
+            position: relative; z-index: 2; transition: 0.3s;
+            /* REMOVIDO: grayscale. Foto brilhante agora! */
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+        .personal-img-wrapper:hover .personal-img { transform: translate(5px, 5px); }
+        .personal-img-wrapper:hover::before { transform: translate(-5px, -5px); border-color: var(--neon-primary); }
 
         /* --- FOOTER & CONTACT --- */
-        .contact-section { text-align: center; margin-bottom: 4rem; }
-        .social-links { display: flex; justify-content: center; gap: 2rem; margin-top: 2rem; flex-wrap: wrap; }
+        .contact-section { text-align: left; margin-bottom: 4rem; }
+        .social-links { display: flex; gap: 1rem; margin-top: 2rem; flex-wrap: wrap; }
         
         footer {
-            padding: 3rem 0; border-top: 1px solid rgba(255,255,255,0.05);
-            text-align: center; color: #555; font-size: 0.9rem;
-            background: #010203;
+            padding: 2rem 0; border-top: 1px solid rgba(255,255,255,0.05);
+            display: flex; justify-content: space-between; align-items: center;
+            color: #555; font-size: 0.85rem; font-family: 'JetBrains Mono', monospace;
+            background: var(--bg-deep);
         }
 
         /* --- RESPONSIVIDADE --- */
         @media (max-width: 968px) {
-            .hero-grid { grid-template-columns: 1fr; text-align: center; gap: 3rem; }
-            .hero-content h1 { font-size: 3.5rem; }
-            .hero-content p { margin: 0 auto 2rem auto; border: none; padding: 0; }
-            .profile-wrapper { width: 350px; height: 350px; margin: 0 auto; }
+            .hero-grid { grid-template-columns: 1fr; text-align: left; gap: 3rem; }
+            .hero-content h1 { font-size: 3rem; }
+            .tech-frame { width: 300px; height: 300px; margin: 0 auto; }
             
-            .timeline-wrapper { padding-left: 20px; border-left: 2px solid rgba(255,255,255,0.1); }
-            .timeline-line { display: none; }
-            .timeline-marker { display: none; }
-            .job-card { padding: 1.5rem; margin-bottom: 2rem; }
+            .section-header { text-align: left; }
+            .timeline-wrapper { padding-left: 20px; }
+            .timeline-marker { left: -26px; }
+            .job-card { padding: 1.5rem; }
             
-            .personal-card { flex-direction: column; text-align: center; padding: 2rem; }
-            .story-grid { grid-template-columns: 1fr; text-align: center; }
-            .story-icon { justify-self: center; margin-bottom: 1rem; }
+            .personal-card { flex-direction: column; padding: 2rem; }
+            .personal-img-wrapper { width: 100%; max-width: 280px; margin: 0 auto; }
+            .story-grid { grid-template-columns: 1fr; }
+            .glass-card { padding: 2rem; }
             
-            nav { display: none; /* Em projetos reais, usaríamos um menu hambúrguer */ }
+            nav ul { display: none; }
+            footer { flex-direction: column; gap: 10px; text-align: center; }
+            .mouse-glow { display: none; } /* Oculta glow no mobile */
         }
     </style>
 </head>
 <body>
 
+    <!-- Fundo de Luz Inteligente -->
+    <div class="bg-glow-static"></div>
+    <div class="mouse-glow" id="mouse-glow"></div>
     <canvas id="neural-canvas"></canvas>
 
     <header id="navbar">
-        <div class="container">
+        <div class="container" style="display: flex; justify-content: space-between; align-items: center;">
+            <a href="#" class="logo">Erickson<span>_</span></a>
             <nav>
                 <ul>
                     <li><a href="#hero" class="active">Home</a></li>
                     <li><a href="#sobre">História</a></li>
                     <li><a href="#jornada">Carreira</a></li>
                     <li><a href="#projetos">Projetos</a></li>
-                    <li><a href="#pessoal">Pessoal</a></li>
+                    <li><a href="#certificacoes">Certs</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
     <main>
+        <!-- HERO -->
         <section id="hero">
             <div class="container">
                 <div class="hero-grid">
                     <div class="hero-content fade-in-up">
-                        <span class="section-tag">Portfólio 2026</span>
+                        <span class="section-tag">Status: Online</span>
                         <h1>Erickson <br> <span class="gradient-text">Queiroz</span></h1>
                         <p>
-                            Técnico <strong>De Infraestrutura</strong> migrando para a engenharia <strong>DevOps</strong>. Transformo operações manuais em automação inteligente e escalável.
+                            Desenvolvedor de <strong>Automação</strong> focado em <strong>AIOps</strong>. Transformo operações manuais em fluxos sistêmicos inteligentes e escaláveis através de <strong>Python</strong> e <strong>IA</strong>.
                         </p>
-                        <div style="display: flex; gap: 20px; flex-wrap: wrap; justify-content: center;"> <a href="#projetos" class="btn">
-                                Ver Projetos <ion-icon name="flash-outline"></ion-icon>
+                        <div style="display: flex; gap: 15px; flex-wrap: wrap;"> 
+                            <a href="#projetos" class="btn">
+                                <ion-icon name="code-working-outline"></ion-icon> Ver Projetos
                             </a>
-                            <a href="https://github.com/erickson45" target="_blank" class="btn-outline btn">
+                            <a href="https://github.com/erickson45" target="_blank" class="btn btn-outline">
                                 <ion-icon name="logo-github"></ion-icon> GitHub
                             </a>
                         </div>
                     </div>
                     
                     <div class="profile-wrapper fade-in-up">
-                        <div class="plasma-ring"></div>
-                        <div class="plasma-ring"></div>
-                        <img src="perfil.png" alt="Erickson Queiroz" class="profile-img">
+                        <div class="tech-frame">
+                            <img src="perfil.jpg" alt="Erickson Queiroz" class="profile-img" onerror="this.src='https://via.placeholder.com/350x350/0a0f18/00e5ff?text=Erickson'">
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
+        <!-- SOBRE -->
         <section id="sobre" class="story-section">
             <div class="container">
                 <div class="glass-card fade-in-up">
                     <div class="story-grid">
                         <div class="story-icon">
-                            <ion-icon name="trending-up"></ion-icon>
+                            <ion-icon name="terminal-outline"></ion-icon>
                         </div>
                         <div class="story-text">
                             <h3>Resiliência & Reinvenção</h3>
@@ -412,7 +468,7 @@
                                 Lá, encarei o desafio de trabalhar como <strong>Garçom</strong> no restaurante Tanka. Foi uma verdadeira escola de vida: aprendi sobre humildade, serviço e como manter a calma sob pressão extrema.
                             </p>
                             <p>
-                                Enquanto trabalhava no salão, minha mente continuava focada no código. Estudava nas madrugadas para voltar à área de TI mais forte. Hoje, trago essa "casca grossa" e dedicação total para resolver problemas complexos de infraestrutura.
+                                Enquanto trabalhava no salão, minha mente continuava focada no código. Estudava nas madrugadas para voltar à área de TI mais forte. Hoje, trago essa "casca grossa" e dedicação total para resolver problemas complexos de infraestrutura e engenharia.
                             </p>
                         </div>
                     </div>
@@ -420,24 +476,26 @@
             </div>
         </section>
 
+        <!-- JORNADA -->
         <section id="jornada" style="padding: 4rem 0;">
             <div class="container">
                 <div class="section-header">
-                    <span class="section-tag">Carreira</span>
+                    <span class="section-tag">// Carreira</span>
                     <h2 class="section-title">Minha Jornada</h2>
                 </div>
 
                 <div class="timeline-wrapper">
                     <div class="timeline-line"></div>
 
+                    <!-- Softplan Atualizada -->
                     <div class="timeline-item">
                         <div class="timeline-marker"></div>
                         <div class="job-card">
                             <div class="job-header">
-                                <span class="job-role">Técnico de Infraestrutura</span>
+                                <span class="job-role">Desenvolvedor de Automação (AIOps)</span>
                                 <span class="job-company">Softplan • Atualmente</span>
                             </div>
-                            <p class="job-desc">Gestão de infraestrutura robusta, melhoria contínua de processos e estudos avançados em cultura DevOps.</p>
+                            <p class="job-desc">Desenvolvimento de plataforma interna AIOps (Python/LLMs) para diagnóstico de incidentes e orquestração de APIs (Zabbix/Teams).</p>
                         </div>
                     </div>
 
@@ -508,18 +566,18 @@
                     </div>
 
                     <div class="timeline-item">
-                        <div class="timeline-marker" style="background: #fff; border-color: #fff; box-shadow: none;"></div>
-                        <div class="job-card" style="border-left: 3px solid #fff;">
+                        <div class="timeline-marker" style="border-color: rgba(255,255,255,0.3); background: transparent;"></div>
+                        <div class="job-card">
                             <div class="job-header">
                                 <span class="job-role">Atendimento & Serviços</span>
-                                <span class="job-company" style="color: #fff;">Tanka Restaurante</span>
+                                <span class="job-company" style="color: #94a3b8;">Tanka Restaurante</span>
                             </div>
                             <p class="job-desc">Período fundamental de desenvolvimento de soft skills: comunicação, resiliência e trabalho em equipe sob pressão.</p>
                         </div>
                     </div>
 
                     <div class="timeline-item">
-                        <div class="timeline-marker" style="background: var(--neon-secondary); border-color: var(--neon-secondary);"></div>
+                        <div class="timeline-marker" style="border-color: var(--neon-secondary); box-shadow: 0 0 10px var(--neon-secondary);"></div>
                         <div class="job-card">
                             <div class="job-header">
                                 <span class="job-role">Início de Carreira</span>
@@ -533,10 +591,11 @@
             </div>
         </section>
 
+        <!-- PROJETOS -->
         <section id="projetos" style="padding: 4rem 0;">
             <div class="container">
                 <div class="section-header">
-                    <span class="section-tag">Portfólio</span>
+                    <span class="section-tag">// Deployments</span>
                     <h2 class="section-title">Projetos & Talks</h2>
                 </div>
 
@@ -544,14 +603,29 @@
                     
                     <div class="project-card fade-in-up">
                         <div class="card-media">
-                            <img src="brisanet.png" alt="Palestras Tech">
+                            <img src="atlas.png" alt="Plataforma Atlas AIOps" onerror="this.src='https://via.placeholder.com/600x400/0b121f/00e5ff?text=ATLAS+AIOps'">
+                        </div>
+                        <div class="card-content">
+                            <h3>Atlas: Plataforma AIOps</h3>
+                            <p>Integração de LLMs locais (Ollama) para análise de causa raiz de incidentes do Zabbix e automação de resoluções via API. Redução massiva de toil operacional.</p>
+                            <div class="card-action">
+                                <span class="card-tag">Python</span>
+                                <span class="card-tag">Gen AI</span>
+                                <span class="card-tag">Zabbix API</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-card fade-in-up">
+                        <div class="card-media">
+                            <img src="brisanet.png" alt="Palestras Tech" onerror="this.src='https://via.placeholder.com/600x400/0b121f/00e5ff?text=Talk+IA'">
                         </div>
                         <div class="card-content">
                             <h3>Speaker & Comunidade</h3>
-                            <p>Palestra ministrada sobre "IA sem Mistérios". Compartilhando conhecimento técnico com a comunidade.</p>
-                            <div class="card-action">
+                            <p>Palestra ministrada sobre "IA sem Mistérios". Compartilhando conhecimento técnico com a comunidade e explorando inovações em Inteligência Artificial.</p>
+                            <div class="card-action" style="margin-top: 10px;">
                                 <a href="https://www.linkedin.com/in/erickson-queiroz-90428121b/" target="_blank" class="link-text">
-                                    Ver no LinkedIn <ion-icon name="arrow-forward"></ion-icon>
+                                    <ion-icon name="logo-linkedin"></ion-icon> Ver Post
                                 </a>
                             </div>
                         </div>
@@ -564,46 +638,66 @@
                         <div class="card-content">
                             <h3>Automação de Redes</h3>
                             <p>Sistema de chamados customizado e Chatbots inteligentes para otimização de performance da rede 4G/5G.</p>
+                            <div class="card-action">
+                                <span class="card-tag">Chatbots</span>
+                                <span class="card-tag">Telecom</span>
+                            </div>
                         </div>
                     </div>
 
                     <div class="project-card fade-in-up">
                         <div class="card-media">
-                            <img src="bot.png" alt="Bot RPA">
+                            <img src="bot.png" alt="Bot RPA" onerror="this.src='https://via.placeholder.com/600x400/0b121f/2563eb?text=RPA+Bot'">
                         </div>
                         <div class="card-content">
                             <h3>Bot RPA de Dados</h3>
                             <p>Robô de automação que consulta 12 fontes de dados simultaneamente para centralizar a tomada de decisão.</p>
+                            <div class="card-action">
+                                <span class="card-tag">Python</span>
+                                <span class="card-tag">Automation</span>
+                            </div>
                         </div>
                     </div>
 
                     <div class="project-card fade-in-up">
                         <div class="card-media">
-                            <img src="dash.png" alt="Dashboards">
+                            <img src="dash.png" alt="Dashboards" onerror="this.src='https://via.placeholder.com/600x400/0b121f/00e5ff?text=Dashboards'">
                         </div>
                         <div class="card-content">
                             <h3>Dashboards Executivos</h3>
                             <p>Painéis de monitoramento em tempo real de KPIs críticos de infraestrutura e SLA.</p>
+                            <div class="card-action">
+                                <span class="card-tag">Data Viz</span>
+                                <span class="card-tag">KPIs</span>
+                            </div>
                         </div>
                     </div>
 
                     <div class="project-card fade-in-up">
                         <div class="card-media">
-                            <img src="tivit.jpg" alt="Mentoria">
+                            <img src="tivit.jpg" alt="Mentoria" onerror="this.src='https://via.placeholder.com/600x400/0b121f/00e5ff?text=Mentoria'">
                         </div>
                         <div class="card-content">
                             <h3>Mentoria TIVIT</h3>
                             <p>Orientação estratégica de novos talentos na entrada ao mercado de tecnologia.</p>
+                            <div class="card-action">
+                                <span class="card-tag">Liderança</span>
+                                <span class="card-tag">Mentoring</span>
+                            </div>
                         </div>
                     </div>
 
                     <div class="project-card fade-in-up">
                         <div class="card-media">
-                            <img src="chamados.png" alt="Gestão de Incidentes">
+                            <img src="chamados.png" alt="Gestão de Incidentes" onerror="this.src='https://via.placeholder.com/600x400/0b121f/00e5ff?text=Incidentes'">
                         </div>
                         <div class="card-content">
                             <h3>Gestão de Incidentes</h3>
                             <p>Integração de sistemas de tickets com bots para agilizar o SLA e o atendimento.</p>
+                            <div class="card-action">
+                                <span class="card-tag">ITSM</span>
+                                <span class="card-tag">ITIL</span>
+                            </div>
                         </div>
                     </div>
 
@@ -614,6 +708,10 @@
                         <div class="card-content">
                             <h3>Automação de E-mail</h3>
                             <p>Scripts Python para envio automático e programado de relatórios de saúde da rede.</p>
+                            <div class="card-action">
+                                <span class="card-tag">Python</span>
+                                <span class="card-tag">Scripts</span>
+                            </div>
                         </div>
                     </div>
 
@@ -621,52 +719,89 @@
             </div>
         </section>
 
-        <section id="skills" style="padding: 2rem 0;">
+        <!-- CERTIFICAÇÕES -->
+        <section id="certificacoes" style="padding: 4rem 0;">
             <div class="container">
-                <div class="section-header" style="margin-bottom: 3rem;">
-                    <h2 class="section-title" style="font-size: 2.5rem;">Tech Stack</h2>
+                <div class="section-header">
+                    <span class="section-tag">// Badges</span>
+                    <h2 class="section-title">Certificações</h2>
                 </div>
-                <div class="skills-container">
-                    <div class="skill-capsule"><ion-icon name="logo-python"></ion-icon> Python Automation</div>
-                    <div class="skill-capsule"><ion-icon name="server-outline"></ion-icon> Linux Hardening</div>
-                    <div class="skill-capsule"><ion-icon name="cloud-done-outline"></ion-icon> AWS & Azure</div>
-                    <div class="skill-capsule"><ion-icon name="shield-checkmark-outline"></ion-icon> Cybersecurity</div>
-                    <div class="skill-capsule"><ion-icon name="bar-chart-outline"></ion-icon> Power BI</div>
-                    <div class="skill-capsule"><ion-icon name="people-outline"></ion-icon> Tech Leadership</div>
+                <div class="cert-grid">
+                    <div class="cert-card fade-in-up">
+                        <div class="cert-img">
+                            <img src="blob.png" alt="Google AI Professional" onerror="this.src='https://via.placeholder.com/80/ffffff/000000?text=G'">
+                        </div>
+                        <div class="cert-info">
+                            <h3>Google AI Professional</h3>
+                            <p>Google Cloud</p>
+                        </div>
+                    </div>
+                    <div class="cert-card fade-in-up" style="transition-delay: 0.2s;">
+                        <div class="cert-img">
+                            <img src="software-engineering-essentials.png" alt="IBM Software Engineering Essentials" onerror="this.src='https://via.placeholder.com/80/ffffff/000000?text=IBM'">
+                        </div>
+                        <div class="cert-info">
+                            <h3>Software Engineering Essentials</h3>
+                            <p>IBM</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
 
+        <!-- TECH STACK -->
+        <section id="skills" style="padding: 2rem 0;">
+            <div class="container">
+                <div class="section-header" style="margin-bottom: 2rem;">
+                    <span class="section-tag">// Environment</span>
+                    <h2 class="section-title">Tech Stack</h2>
+                </div>
+                <div class="skills-container">
+                    <div class="skill-capsule"><ion-icon name="logo-python"></ion-icon> Python & Flask</div>
+                    <div class="skill-capsule"><ion-icon name="hardware-chip-outline"></ion-icon> IA Generativa & LLMs</div>
+                    <div class="skill-capsule"><ion-icon name="pulse-outline"></ion-icon> Zabbix API</div>
+                    <div class="skill-capsule"><ion-icon name="cube-outline"></ion-icon> Docker & Containers</div>
+                    <div class="skill-capsule"><ion-icon name="server-outline"></ion-icon> Linux Hardening</div>
+                    <div class="skill-capsule"><ion-icon name="git-branch-outline"></ion-icon> CI/CD & Automação</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PESSOAL (FOTOS VIBRANTES) -->
         <section id="pessoal">
             <div class="container">
                 <div class="personal-card fade-in-up">
                     <div class="personal-text">
                         <h2>Quem é o Erickson?</h2>
-                        <p style="color: #ccc; font-size: 1.1rem; margin-bottom: 1.5rem;">
+                        <p>
                             Além dos códigos e servidores, sou um entusiasta da vida. Nordestino "raiz", trago comigo a garra de quem não desiste nunca.
                         </p>
-                        <p style="color: #ccc; font-size: 1.1rem;">
+                        <p>
                             Sou movido a desafios e não preciso de café para ficar ligado no 220v! Nas horas vagas, gosto de jogos online, trilhas e de estar conectado com pessoas. Acredito que a tecnologia é o meio, mas as pessoas são o fim.
                         </p>
                     </div>
-                    <div>
-                        <img src="eu.jpg" alt="Foto Pessoal" class="personal-img">
+                    <div class="personal-img-wrapper">
+                        <img src="eu.jpg" alt="Foto Pessoal" class="personal-img" onerror="this.src='https://via.placeholder.com/280x280/0b121f/00e5ff?text=Erickson'">
                     </div>
                 </div>
             </div>
         </section>
 
+        <!-- CONTATO -->
         <section id="contato" class="contact-section">
             <div class="container">
-                <h2 class="section-title" style="font-size: 2.5rem; margin-bottom: 2rem;">Vamos Conversar?</h2>
+                <div class="section-header" style="margin-bottom: 2rem;">
+                    <span class="section-tag">// Networking</span>
+                    <h2 class="section-title">Vamos Conversar?</h2>
+                </div>
                 <div class="social-links">
                     <a href="mailto:erickson.queiroz65@gmail.com" class="btn">
                         <ion-icon name="mail-outline"></ion-icon> Enviar E-mail
                     </a>
-                    <a href="https://www.linkedin.com/in/erickson-queiroz-90428121b/" target="_blank" class="btn">
+                    <a href="https://www.linkedin.com/in/erickson-queiroz-90428121b/" target="_blank" class="btn btn-outline">
                         <ion-icon name="logo-linkedin"></ion-icon> LinkedIn
                     </a>
-                    <a href="#" class="btn" onclick="alert('WhatsApp: (11) 98571-8700')">
+                    <a href="#" class="btn btn-outline" onclick="alert('WhatsApp: (11) 98571-8700')">
                         <ion-icon name="logo-whatsapp"></ion-icon> WhatsApp
                     </a>
                 </div>
@@ -676,18 +811,32 @@
     </main>
 
     <footer>
-        <div class="container">
-            <p>&copy; 2026 Erickson Queiroz. Desenvolvido com excelência.</p>
+        <div class="container" style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+            <p>&copy; 2026 Erickson Queiroz.</p>
+            <p style="color: var(--neon-primary);">root@atlas:~$ deploy --success</p>
         </div>
     </footer>
 
     <script>
-        // --- CONFIGURAÇÃO CANVAS ---
+        // --- EFEITO GLOW MOUSE (Fator UAU) ---
+        const mouseGlow = document.getElementById('mouse-glow');
+        let mouseX = 0;
+        let mouseY = 0;
+        
+        window.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+            mouseGlow.style.left = mouseX + 'px';
+            mouseGlow.style.top = mouseY + 'px';
+        });
+
+        // --- ANIMAÇÃO DATA PLEXUS / NEURAL NETWORK ---
         const canvas = document.getElementById('neural-canvas');
         const ctx = canvas.getContext('2d');
+        
         let width, height;
         let particles = [];
-
+        
         function resize() {
             width = canvas.width = window.innerWidth;
             height = canvas.height = window.innerHeight;
@@ -699,12 +848,10 @@
             constructor() {
                 this.x = Math.random() * width;
                 this.y = Math.random() * height;
-                this.vx = (Math.random() - 0.5) * 0.4;
+                // Velocidade bem lenta e corporativa
+                this.vx = (Math.random() - 0.5) * 0.4; 
                 this.vy = (Math.random() - 0.5) * 0.4;
-                this.size = Math.random() * 2 + 0.5;
-                // Cores do tema (Azul/Ciano)
-                const colors = ['#00f3ff', '#0062ff', '#ffffff'];
-                this.color = colors[Math.floor(Math.random() * colors.length)];
+                this.radius = Math.random() * 1.5 + 0.5;
             }
             update() {
                 this.x += this.vx;
@@ -714,35 +861,57 @@
             }
             draw() {
                 ctx.beginPath();
-                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                ctx.fillStyle = this.color;
+                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                ctx.fillStyle = 'rgba(0, 229, 255, 0.4)';
                 ctx.fill();
             }
         }
 
         function initParticles() {
             particles = [];
-            for (let i = 0; i < 90; i++) particles.push(new Particle());
+            // Quantidade calculada para não poluir a tela
+            let numberOfParticles = Math.floor((width * height) / 18000); 
+            for (let i = 0; i < numberOfParticles; i++) {
+                particles.push(new Particle());
+            }
         }
 
         function animate() {
             ctx.clearRect(0, 0, width, height);
             
             for (let i = 0; i < particles.length; i++) {
-                let p1 = particles[i];
-                p1.update();
-                p1.draw();
-                for (let j = i + 1; j < particles.length; j++) {
-                    let p2 = particles[j];
-                    let dx = p1.x - p2.x;
-                    let dy = p1.y - p2.y;
-                    let dist = Math.sqrt(dx*dx + dy*dy);
-                    if (dist < 130) {
+                particles[i].update();
+                particles[i].draw();
+                
+                // Conectar partículas entre si
+                for (let j = i; j < particles.length; j++) {
+                    const dx = particles[i].x - particles[j].x;
+                    const dy = particles[i].y - particles[j].y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+                    
+                    if (distance < 140) {
                         ctx.beginPath();
-                        ctx.strokeStyle = `rgba(0, 243, 255, ${0.15 - dist/1000})`;
-                        ctx.lineWidth = 0.5;
-                        ctx.moveTo(p1.x, p1.y);
-                        ctx.lineTo(p2.x, p2.y);
+                        ctx.strokeStyle = `rgba(0, 229, 255, ${0.1 - distance/1400})`;
+                        ctx.lineWidth = 0.6;
+                        ctx.moveTo(particles[i].x, particles[i].y);
+                        ctx.lineTo(particles[j].x, particles[j].y);
+                        ctx.stroke();
+                    }
+                }
+                
+                // Conectar partículas ao mouse
+                if (mouseX !== 0 && mouseY !== 0) {
+                    const dxMouse = particles[i].x - mouseX;
+                    const dyMouse = particles[i].y - mouseY;
+                    const distanceMouse = Math.sqrt(dxMouse * dxMouse + dyMouse * dyMouse);
+                    
+                    if (distanceMouse < 220) {
+                        ctx.beginPath();
+                        // Linha azul puxando pro mouse
+                        ctx.strokeStyle = `rgba(59, 130, 246, ${0.15 - distanceMouse/1466})`; 
+                        ctx.lineWidth = 1;
+                        ctx.moveTo(particles[i].x, particles[i].y);
+                        ctx.lineTo(mouseX, mouseY);
                         ctx.stroke();
                     }
                 }
@@ -754,25 +923,21 @@
         animate();
 
         // --- ANIMATION OBSERVER ---
-        const observerOptions = { threshold: 0.1 };
+        const observerOptions = { threshold: 0.1, rootMargin: "0px 0px -50px 0px" };
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('visible');
-                    entry.target.style.opacity = 1;
-                    entry.target.style.transform = 'translateY(0)';
+                    observer.unobserve(entry.target);
                 }
             });
         }, observerOptions);
 
         document.querySelectorAll('.fade-in-up, .timeline-item').forEach(el => {
-            el.style.opacity = 0;
-            el.style.transform = 'translateY(40px)';
-            el.style.transition = 'all 0.8s cubic-bezier(0.25, 1, 0.5, 1)';
             observer.observe(el);
         });
 
-        // --- NAVBAR SCROLL EFFECT ---
+        // --- NAVBAR SCROLL ---
         window.addEventListener('scroll', () => {
             const header = document.getElementById('navbar');
             if (window.scrollY > 50) {
