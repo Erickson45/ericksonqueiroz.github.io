@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Portfólio de Erickson Queiroz - Desenvolvedor de Automação e AIOps.">
-    <title>Erickson Queiroz | Desenvolvedor de Automação & IA</title>
+    <meta name="description" content="Portfólio de Erickson Queiroz - Desenvolvedor de Automação, AIOps e Observabilidade.">
+    <title>Erickson Queiroz | Automação & AIOps</title>
     
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
@@ -191,7 +191,6 @@
             z-index: 2; position: relative;
             background: var(--bg-surface);
             border: 1px solid rgba(255,255,255,0.1);
-            /* REMOVIDO: filtros escuros. Adicionado brilho sutil */
             box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
         }
 
@@ -276,7 +275,7 @@
         }
         .card-media img {
             width: 100%; height: 100%; object-fit: cover;
-            transition: 0.5s ease; opacity: 0.9; /* Imagens vivas! */
+            transition: 0.5s ease; opacity: 0.9;
         }
         .project-card:hover .card-media img { transform: scale(1.05); opacity: 1; }
         
@@ -296,6 +295,20 @@
             font-family: 'JetBrains Mono', monospace; font-size: 0.65rem;
             color: var(--neon-primary); background: rgba(0, 229, 255, 0.05);
             padding: 4px 8px; border: 1px solid rgba(0, 229, 255, 0.2); border-radius: 2px;
+        }
+        
+        /* Nova classe para links secundários (Ex: Ver Post do LinkedIn) */
+        .card-link {
+            font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; font-weight: 600;
+            color: #fff; background: rgba(59, 130, 246, 0.15);
+            padding: 5px 10px; border: 1px solid var(--neon-secondary); border-radius: var(--radius-sm);
+            text-decoration: none; display: inline-flex; align-items: center; gap: 6px;
+            transition: var(--transition-smooth); text-transform: uppercase; letter-spacing: 0.5px;
+        }
+        .card-link:hover {
+            background: var(--neon-secondary); color: #fff;
+            box-shadow: 0 0 12px rgba(59, 130, 246, 0.4);
+            transform: translateY(-2px);
         }
 
         /* --- CERTIFICAÇÕES --- */
@@ -360,7 +373,6 @@
         .personal-img {
             width: 100%; height: 100%; object-fit: cover; border-radius: var(--radius-sm);
             position: relative; z-index: 2; transition: 0.3s;
-            /* REMOVIDO: grayscale. Foto brilhante agora! */
             box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
         .personal-img-wrapper:hover .personal-img { transform: translate(5px, 5px); }
@@ -395,7 +407,7 @@
             
             nav ul { display: none; }
             footer { flex-direction: column; gap: 10px; text-align: center; }
-            .mouse-glow { display: none; } /* Oculta glow no mobile */
+            .mouse-glow { display: none; }
         }
     </style>
 </head>
@@ -430,7 +442,7 @@
                         <span class="section-tag">Status: Online</span>
                         <h1>Erickson <br> <span class="gradient-text">Queiroz</span></h1>
                         <p>
-                            Desenvolvedor de <strong>Automação</strong> focado em <strong>AIOps</strong>. Transformo operações manuais em fluxos sistêmicos inteligentes e escaláveis através de <strong>Python</strong> e <strong>IA</strong>.
+                            Desenvolvedor focado em <strong>Automação</strong>, <strong>AIOps</strong> e <strong>Observabilidade</strong>. Transformo operações manuais em fluxos sistêmicos inteligentes e escaláveis, reduzindo o esforço operacional através de <strong>Python</strong>, integração de APIs e <strong>IA Local</strong>.
                         </p>
                         <div style="display: flex; gap: 15px; flex-wrap: wrap;"> 
                             <a href="#projetos" class="btn">
@@ -460,15 +472,15 @@
                             <ion-icon name="terminal-outline"></ion-icon>
                         </div>
                         <div class="story-text">
-                            <h3>Resiliência & Reinvenção</h3>
+                            <h3>Resiliência & Evolução Contínua</h3>
                             <p>
-                                Minha trajetória é definida pela coragem de sair da zona de conforto. Comecei minha carreira na tecnologia, no meu primeiro emprego na <strong>Brisanet</strong>, mas senti o chamado para expandir meus horizontes em <strong>São Paulo</strong>.
+                                Minha trajetória é marcada pela forte capacidade de adaptação e resolução de problemas estruturais. Iniciei minha jornada em suporte técnico e monitoramento de infraestrutura, onde construí uma base sólida sobre o comportamento e a resiliência de grandes redes.
                             </p>
                             <p>
-                                Lá, encarei o desafio de trabalhar como <strong>Garçom</strong> no restaurante Tanka. Foi uma verdadeira escola de vida: aprendi sobre humildade, serviço e como manter a calma sob pressão extrema.
+                                Ao longo do tempo, desenvolvi uma mentalidade voltada para a eficiência corporativa, buscando ativamente eliminar o trabalho manual (toil). Minhas experiências me ensinaram a manter a calma em incidentes críticos e a focar rapidamente no restabelecimento e na solução raiz.
                             </p>
                             <p>
-                                Enquanto trabalhava no salão, minha mente continuava focada no código. Estudava nas madrugadas para voltar à área de TI mais forte. Hoje, trago essa "casca grossa" e dedicação total para resolver problemas complexos de infraestrutura e engenharia.
+                                Hoje, concentro minha atuação na criação de sistemas de automação e práticas de observabilidade. Utilizo engenharia de software e recursos de IA para orquestrar ferramentas, garantir estabilidade operacional e entregar resultados em larga escala.
                             </p>
                         </div>
                     </div>
@@ -487,7 +499,6 @@
                 <div class="timeline-wrapper">
                     <div class="timeline-line"></div>
 
-                    <!-- Softplan Atualizada -->
                     <div class="timeline-item">
                         <div class="timeline-marker"></div>
                         <div class="job-card">
@@ -495,7 +506,7 @@
                                 <span class="job-role">Desenvolvedor de Automação (AIOps)</span>
                                 <span class="job-company">Softplan • Atualmente</span>
                             </div>
-                            <p class="job-desc">Desenvolvimento de plataforma interna AIOps (Python/LLMs) para diagnóstico de incidentes e orquestração de APIs (Zabbix/Teams).</p>
+                            <p class="job-desc">Desenvolvimento de soluções corporativas internas em Python para automação de resposta a incidentes, integração com observabilidade (Zabbix), Microsoft Graph/Teams e apoio automatizado à triagem com IA local.</p>
                         </div>
                     </div>
 
@@ -506,7 +517,7 @@
                                 <span class="job-role">Analista de Telecomunicações</span>
                                 <span class="job-company">Brisanet</span>
                             </div>
-                            <p class="job-desc">Desenvolvimento de automações com Python, Dashboards de performance 4G/5G e inteligência de dados.</p>
+                            <p class="job-desc">Criação de automações operacionais com Python, elaboração de Dashboards executivos de performance de redes e aplicação de inteligência de dados na tomada de decisão técnica.</p>
                         </div>
                     </div>
 
@@ -517,7 +528,7 @@
                                 <span class="job-role">Analista de NOC</span>
                                 <span class="job-company">MDsystems</span>
                             </div>
-                            <p class="job-desc">Monitoramento ativo 24/7 e resposta imediata a incidentes críticos de rede.</p>
+                            <p class="job-desc">Monitoramento proativo e observabilidade 24/7, garantindo a rápida identificação e contenção de incidentes críticos de infraestrutura de rede.</p>
                         </div>
                     </div>
 
@@ -528,7 +539,7 @@
                                 <span class="job-role">Analista de Suporte Técnico</span>
                                 <span class="job-company">Tivit</span>
                             </div>
-                            <p class="job-desc">Suporte especializado N2/N3 para grandes contas corporativas.</p>
+                            <p class="job-desc">Sustentação especializada N2/N3 focada na estabilidade e no atendimento ágil para infraestrutura de grandes contas corporativas.</p>
                         </div>
                     </div>
 
@@ -539,7 +550,7 @@
                                 <span class="job-role">Analista de Suporte</span>
                                 <span class="job-company">Stefanini</span>
                             </div>
-                            <p class="job-desc">Gestão de infraestrutura local, atendimento ao usuário e manutenção de hardware.</p>
+                            <p class="job-desc">Administração de infraestrutura local, atendimento padronizado ao usuário corporativo e manutenção preventiva de hardware.</p>
                         </div>
                     </div>
 
@@ -550,7 +561,7 @@
                                 <span class="job-role">Suporte Técnico</span>
                                 <span class="job-company">DBcorp</span>
                             </div>
-                            <p class="job-desc">Atuação inicial com suporte a sistemas e manutenção de computadores.</p>
+                            <p class="job-desc">Base estrutural em suporte a sistemas corporativos, manutenção técnica e suporte ao ecossistema de infraestrutura de TI.</p>
                         </div>
                     </div>
 
@@ -561,7 +572,7 @@
                                 <span class="job-role">Suporte de TI</span>
                                 <span class="job-company">Telecardio</span>
                             </div>
-                            <p class="job-desc">Suporte a sistemas de saúde, redes locais e configuração de estações.</p>
+                            <p class="job-desc">Atuação inicial em redes locais, configuração de estações de trabalho e suporte a sistemas críticos da área da saúde.</p>
                         </div>
                     </div>
 
@@ -572,7 +583,7 @@
                                 <span class="job-role">Atendimento & Serviços</span>
                                 <span class="job-company" style="color: #94a3b8;">Tanka Restaurante</span>
                             </div>
-                            <p class="job-desc">Período fundamental de desenvolvimento de soft skills: comunicação, resiliência e trabalho em equipe sob pressão.</p>
+                            <p class="job-desc">Período fundamental de desenvolvimento de resiliência corporativa, focado na gestão de estresse, comunicação eficiente e trabalho em equipe sob alta pressão.</p>
                         </div>
                     </div>
 
@@ -583,7 +594,7 @@
                                 <span class="job-role">Início de Carreira</span>
                                 <span class="job-company">Brisanet (Primeiro Emprego)</span>
                             </div>
-                            <p class="job-desc">Onde dei meus primeiros passos profissionais e descobri minha vocação para a tecnologia.</p>
+                            <p class="job-desc">Ponto de partida no mercado corporativo, onde construí minhas bases técnicas de infraestrutura e desenvolvi um forte foco na resolução de problemas sistêmicos.</p>
                         </div>
                     </div>
 
@@ -603,15 +614,15 @@
                     
                     <div class="project-card fade-in-up">
                         <div class="card-media">
-                            <img src="atlas.png" alt="Plataforma Atlas AIOps" onerror="this.src='https://via.placeholder.com/600x400/0b121f/00e5ff?text=ATLAS+AIOps'">
+                            <img src="atlas.png" alt="Sistema de Automação Operacional com IA" onerror="this.src='https://via.placeholder.com/600x400/0b121f/00e5ff?text=Automação+AIOps'">
                         </div>
                         <div class="card-content">
-                            <h3>Atlas: Plataforma AIOps</h3>
-                            <p>Integração de LLMs locais (Ollama) para análise de causa raiz de incidentes do Zabbix e automação de resoluções via API. Redução massiva de toil operacional.</p>
+                            <h3>Sistema de Automação Operacional com IA</h3>
+                            <p>Desenvolvimento de solução interna em Python para automação de incidentes, integração com ferramentas de monitoramento, geração de notificações, relatórios e apoio à triagem técnica corporativa utilizando IA local.</p>
                             <div class="card-action">
                                 <span class="card-tag">Python</span>
-                                <span class="card-tag">Gen AI</span>
-                                <span class="card-tag">Zabbix API</span>
+                                <span class="card-tag">IA Local / LLMs</span>
+                                <span class="card-tag">Integração de APIs</span>
                             </div>
                         </div>
                     </div>
@@ -621,10 +632,11 @@
                             <img src="brisanet.png" alt="Palestras Tech" onerror="this.src='https://via.placeholder.com/600x400/0b121f/00e5ff?text=Talk+IA'">
                         </div>
                         <div class="card-content">
-                            <h3>Speaker & Comunidade</h3>
-                            <p>Palestra ministrada sobre "IA sem Mistérios". Compartilhando conhecimento técnico com a comunidade e explorando inovações em Inteligência Artificial.</p>
+                            <h3>Speaker & Evangelização Tech</h3>
+                            <p>Palestra ministrada sobre aplicabilidade corporativa e adoção da Inteligência Artificial. Compartilhando visão arquitetural e prática com a comunidade técnica.</p>
                             <div class="card-action" style="margin-top: 10px;">
-                                <a href="https://www.linkedin.com/in/erickson-queiroz-90428121b/" target="_blank" class="link-text">
+                                <!-- AQUI ESTÁ A ALTERAÇÃO: Usando a nova classe card-link -->
+                                <a href="https://www.linkedin.com/in/erickson-queiroz-90428121b/" target="_blank" class="card-link">
                                     <ion-icon name="logo-linkedin"></ion-icon> Ver Post
                                 </a>
                             </div>
@@ -636,25 +648,25 @@
                             <div class="card-icon-placeholder"><ion-icon name="git-network-outline"></ion-icon></div>
                         </div>
                         <div class="card-content">
-                            <h3>Automação de Redes</h3>
-                            <p>Sistema de chamados customizado e Chatbots inteligentes para otimização de performance da rede 4G/5G.</p>
+                            <h3>Automação em Telecomunicações</h3>
+                            <p>Orquestração e customização de chamados sistêmicos, integrando chatbots operacionais para garantir agilidade no monitoramento e alta disponibilidade em ambientes críticos de redes.</p>
                             <div class="card-action">
-                                <span class="card-tag">Chatbots</span>
-                                <span class="card-tag">Telecom</span>
+                                <span class="card-tag">Observabilidade</span>
+                                <span class="card-tag">Orquestração</span>
                             </div>
                         </div>
                     </div>
 
                     <div class="project-card fade-in-up">
                         <div class="card-media">
-                            <img src="bot.png" alt="Bot RPA" onerror="this.src='https://via.placeholder.com/600x400/0b121f/2563eb?text=RPA+Bot'">
+                            <img src="bot.png" alt="Bot RPA" onerror="this.src='https://via.placeholder.com/600x400/0b121f/2563eb?text=Integração+de+Dados'">
                         </div>
                         <div class="card-content">
-                            <h3>Bot RPA de Dados</h3>
-                            <p>Robô de automação que consulta 12 fontes de dados simultaneamente para centralizar a tomada de decisão.</p>
+                            <h3>Centralização de Dados e Automação</h3>
+                            <p>Criação de rotinas em Python que agregam e processam múltiplas fontes de dados simultaneamente, garantindo uma tomada de decisão centralizada e livre de trabalho manual.</p>
                             <div class="card-action">
-                                <span class="card-tag">Python</span>
-                                <span class="card-tag">Automation</span>
+                                <span class="card-tag">Python Scripting</span>
+                                <span class="card-tag">Processamento de Dados</span>
                             </div>
                         </div>
                     </div>
@@ -664,11 +676,11 @@
                             <img src="dash.png" alt="Dashboards" onerror="this.src='https://via.placeholder.com/600x400/0b121f/00e5ff?text=Dashboards'">
                         </div>
                         <div class="card-content">
-                            <h3>Dashboards Executivos</h3>
-                            <p>Painéis de monitoramento em tempo real de KPIs críticos de infraestrutura e SLA.</p>
+                            <h3>Visualização e Painéis Executivos</h3>
+                            <p>Desenvolvimento de painéis de observabilidade em tempo real, mapeando KPIs estruturais e garantindo controle absoluto de SLAs de infraestrutura corporativa.</p>
                             <div class="card-action">
                                 <span class="card-tag">Data Viz</span>
-                                <span class="card-tag">KPIs</span>
+                                <span class="card-tag">Gestão de KPIs</span>
                             </div>
                         </div>
                     </div>
@@ -678,11 +690,11 @@
                             <img src="tivit.jpg" alt="Mentoria" onerror="this.src='https://via.placeholder.com/600x400/0b121f/00e5ff?text=Mentoria'">
                         </div>
                         <div class="card-content">
-                            <h3>Mentoria TIVIT</h3>
-                            <p>Orientação estratégica de novos talentos na entrada ao mercado de tecnologia.</p>
+                            <h3>Mentoria Operacional</h3>
+                            <p>Transferência de conhecimento e instrução técnica no onboarding de novos talentos, visando padronização operacional e aceleração da curva de aprendizado.</p>
                             <div class="card-action">
-                                <span class="card-tag">Liderança</span>
-                                <span class="card-tag">Mentoring</span>
+                                <span class="card-tag">Treinamento</span>
+                                <span class="card-tag">Onboarding Tech</span>
                             </div>
                         </div>
                     </div>
@@ -692,11 +704,11 @@
                             <img src="chamados.png" alt="Gestão de Incidentes" onerror="this.src='https://via.placeholder.com/600x400/0b121f/00e5ff?text=Incidentes'">
                         </div>
                         <div class="card-content">
-                            <h3>Gestão de Incidentes</h3>
-                            <p>Integração de sistemas de tickets com bots para agilizar o SLA e o atendimento.</p>
+                            <h3>Integração ITSM e ITSO</h3>
+                            <p>Sincronização entre plataformas corporativas de chamados e soluções de mensageria automatizada (bots), com foco absoluto na redução de tempo de resposta a falhas sistêmicas.</p>
                             <div class="card-action">
-                                <span class="card-tag">ITSM</span>
-                                <span class="card-tag">ITIL</span>
+                                <span class="card-tag">Gestão de Incidentes</span>
+                                <span class="card-tag">ITIL / ITSM</span>
                             </div>
                         </div>
                     </div>
@@ -706,11 +718,11 @@
                             <div class="card-icon-placeholder" style="color: var(--neon-secondary);"><ion-icon name="mail-unread-outline"></ion-icon></div>
                         </div>
                         <div class="card-content">
-                            <h3>Automação de E-mail</h3>
-                            <p>Scripts Python para envio automático e programado de relatórios de saúde da rede.</p>
+                            <h3>Notificações Programadas</h3>
+                            <p>Implementação de jobs automatizados e scripts Python para a compilação e disparo de relatórios essenciais de disponibilidade técnica diretamente para as lideranças operacionais.</p>
                             <div class="card-action">
+                                <span class="card-tag">Cron Jobs</span>
                                 <span class="card-tag">Python</span>
-                                <span class="card-tag">Scripts</span>
                             </div>
                         </div>
                     </div>
@@ -757,12 +769,12 @@
                     <h2 class="section-title">Tech Stack</h2>
                 </div>
                 <div class="skills-container">
-                    <div class="skill-capsule"><ion-icon name="logo-python"></ion-icon> Python & Flask</div>
-                    <div class="skill-capsule"><ion-icon name="hardware-chip-outline"></ion-icon> IA Generativa & LLMs</div>
-                    <div class="skill-capsule"><ion-icon name="pulse-outline"></ion-icon> Zabbix API</div>
-                    <div class="skill-capsule"><ion-icon name="cube-outline"></ion-icon> Docker & Containers</div>
-                    <div class="skill-capsule"><ion-icon name="server-outline"></ion-icon> Linux Hardening</div>
-                    <div class="skill-capsule"><ion-icon name="git-branch-outline"></ion-icon> CI/CD & Automação</div>
+                    <div class="skill-capsule"><ion-icon name="logo-python"></ion-icon> Python & Integração de APIs</div>
+                    <div class="skill-capsule"><ion-icon name="hardware-chip-outline"></ion-icon> IA Local & LLMs na Operação</div>
+                    <div class="skill-capsule"><ion-icon name="pulse-outline"></ion-icon> Observabilidade (Zabbix)</div>
+                    <div class="skill-capsule"><ion-icon name="cube-outline"></ion-icon> PostgreSQL & Bancos de Dados</div>
+                    <div class="skill-capsule"><ion-icon name="server-outline"></ion-icon> Linux & Administração de Servidores</div>
+                    <div class="skill-capsule"><ion-icon name="git-branch-outline"></ion-icon> Docker, Deploy e Automação Operacional</div>
                 </div>
             </div>
         </section>
@@ -774,10 +786,10 @@
                     <div class="personal-text">
                         <h2>Quem é o Erickson?</h2>
                         <p>
-                            Além dos códigos e servidores, sou um entusiasta da vida. Nordestino "raiz", trago comigo a garra de quem não desiste nunca.
+                            Sou um profissional movido pela resolução lógica de problemas de infraestrutura e entusiasta em práticas de confiabilidade (SRE/AIOps). Tenho muito orgulho das minhas raízes nordestinas e aplico a mesma determinação incansável no meu progresso diário em tecnologia.
                         </p>
                         <p>
-                            Sou movido a desafios e não preciso de café para ficar ligado no 220v! Nas horas vagas, gosto de jogos online, trilhas e de estar conectado com pessoas. Acredito que a tecnologia é o meio, mas as pessoas são o fim.
+                            Acredito firmemente que a tecnologia deve servir como um mecanismo para simplificar a vida humana. Quando não estou arquitetando automações, busco o equilíbrio dedicando meu tempo livre a jogos online, conexões valiosas na comunidade de T.I e trilhas ao ar livre.
                         </p>
                     </div>
                     <div class="personal-img-wrapper">
@@ -801,8 +813,8 @@
                     <a href="https://www.linkedin.com/in/erickson-queiroz-90428121b/" target="_blank" class="btn btn-outline">
                         <ion-icon name="logo-linkedin"></ion-icon> LinkedIn
                     </a>
-                    <a href="#" class="btn btn-outline" onclick="alert('WhatsApp: (11) 98571-8700')">
-                        <ion-icon name="logo-whatsapp"></ion-icon> WhatsApp
+                    <a href="https://github.com/erickson45" target="_blank" class="btn btn-outline">
+                        <ion-icon name="logo-github"></ion-icon> GitHub
                     </a>
                 </div>
             </div>
@@ -813,7 +825,7 @@
     <footer>
         <div class="container" style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
             <p>&copy; 2026 Erickson Queiroz.</p>
-            <p style="color: var(--neon-primary);">root@atlas:~$ deploy --success</p>
+            <p style="color: var(--neon-primary);">root@ops:~$ auto-resolve --success</p>
         </div>
     </footer>
 
@@ -848,7 +860,6 @@
             constructor() {
                 this.x = Math.random() * width;
                 this.y = Math.random() * height;
-                // Velocidade bem lenta e corporativa
                 this.vx = (Math.random() - 0.5) * 0.4; 
                 this.vy = (Math.random() - 0.5) * 0.4;
                 this.radius = Math.random() * 1.5 + 0.5;
@@ -869,7 +880,6 @@
 
         function initParticles() {
             particles = [];
-            // Quantidade calculada para não poluir a tela
             let numberOfParticles = Math.floor((width * height) / 18000); 
             for (let i = 0; i < numberOfParticles; i++) {
                 particles.push(new Particle());
@@ -883,7 +893,6 @@
                 particles[i].update();
                 particles[i].draw();
                 
-                // Conectar partículas entre si
                 for (let j = i; j < particles.length; j++) {
                     const dx = particles[i].x - particles[j].x;
                     const dy = particles[i].y - particles[j].y;
@@ -899,7 +908,6 @@
                     }
                 }
                 
-                // Conectar partículas ao mouse
                 if (mouseX !== 0 && mouseY !== 0) {
                     const dxMouse = particles[i].x - mouseX;
                     const dyMouse = particles[i].y - mouseY;
@@ -907,7 +915,6 @@
                     
                     if (distanceMouse < 220) {
                         ctx.beginPath();
-                        // Linha azul puxando pro mouse
                         ctx.strokeStyle = `rgba(59, 130, 246, ${0.15 - distanceMouse/1466})`; 
                         ctx.lineWidth = 1;
                         ctx.moveTo(particles[i].x, particles[i].y);
